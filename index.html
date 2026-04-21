@@ -359,6 +359,7 @@ footer{background:var(--bark);padding:2.25rem 1.75rem;margin-top:1px;}
     <button class="nav-tab" onclick="goTo('book')">Book</button>
     <button class="nav-tab" onclick="goTo('prices')">Prices</button>
     <button class="nav-tab" onclick="goTo('contact')">Contact</button>
+    <button class="nav-tab" onclick="goTo('tracker')">Tracker</button>
   </div>
   <div class="nav-right">
     <a href="tel:5039988608" class="nav-phone">(503) 998-8608</a>
@@ -374,6 +375,7 @@ footer{background:var(--bark);padding:2.25rem 1.75rem;margin-top:1px;}
   <button onclick="goTo('book')">Book a Ride</button>
   <button onclick="goTo('prices')">Prices</button>
   <button onclick="goTo('contact')">Contact</button>
+  <button onclick="goTo('tracker')">Flight Tracker</button>
 </div>
  
 <!-- ══════════════════════════ HOME ══════════════════════════ -->
@@ -685,6 +687,32 @@ footer{background:var(--bark);padding:2.25rem 1.75rem;margin-top:1px;}
     </div>
   </div>
 </div>
+  <!-- ══════════════════════════ FLIGHT TRACKER ══════════════════════════ -->
+<div class="page" id="pg-tracker">
+  <div class="book-hero">
+    <h1>Flight Tracker</h1>
+    <p>Track any flight in real-time. Perfect for pickups at PDX.</p>
+  </div>
+  <div class="book-wrap">
+    <div class="book-card">
+      <div class="book-card-head">
+        <h2>Track a Flight</h2>
+        <span>Live Aviation Data</span>
+      </div>
+
+      <div class="bform">
+        <div class="fg">
+          <label>Flight Number</label>
+          <input type="text" id="flightInput" placeholder="e.g. AS1234">
+        </div>
+
+        <button class="sub-btn" onclick="trackFlight()">Track Flight</button>
+
+        <div id="flightResult" style="margin-top:1rem;font-size:.85rem;"></div>
+      </div>
+    </div>
+  </div>
+</div>
  
 <!-- FOOTER -->
 <footer>
@@ -758,7 +786,7 @@ window.addEventListener('scroll',()=>{
 });
  
 /* ══ PAGE NAV ══ */
-const pages=['home','services','book','prices','contact'];
+const pages=['home','services','book','prices','contact','tracker'];
 function goTo(id){
   pages.forEach(p=>{
     document.getElementById('pg-'+p).classList.toggle('active',p===id);
@@ -893,6 +921,41 @@ function swState(s){
   document.getElementById('por').classList.toggle('on',s==='or');
   document.getElementById('pwa').classList.toggle('on',s==='wa');
   renderP();
+}
+  async function trackFlight(){
+  const flight = document.getElementById('flightInput').value.trim();
+  const resultBox = document.getElementById('flightResult');
+
+  if(!flight){
+    resultBox.innerHTML = "⚠️ Enter a flight number.";
+    return;
+  }
+
+  resultBox.innerHTML = "⏳ Tracking flight...";
+
+  try {
+    const res = await fetch(`http://api.aviationstack.com/v1/flights?access_key=574b48386c370aa1572884e01bb5b6ab&flight_iata=${flight}`);
+    const data = await res.json();
+
+    if(!data.data || data.data.length === 0){
+      resultBox.innerHTML = "❌ No flight found.";
+      return;
+    }
+
+    const f = data.data[0];
+
+    resultBox.innerHTML = `
+      <strong>✈️ ${f.airline.name} ${f.flight.iata}</strong><br><br>
+      <strong>Status:</strong> ${f.flight_status}<br>
+      <strong>Departure:</strong> ${f.departure.airport} (${f.departure.iata})<br>
+      <strong>Arrival:</strong> ${f.arrival.airport} (${f.arrival.iata})<br>
+      <strong>Scheduled:</strong> ${f.departure.scheduled || 'N/A'}<br>
+      <strong>Estimated Arrival:</strong> ${f.arrival.estimated || 'N/A'}
+    `;
+  } catch(err){
+    console.error(err);
+    resultBox.innerHTML = "❌ Error tracking flight.";
+  }
 }
 </script>
 </body>
