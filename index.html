@@ -934,7 +934,7 @@ function swState(s){
   resultBox.innerHTML = "⏳ Tracking flight...";
 
   try {
-    const res = await fetch(`http://api.aviationstack.com/v1/flights?access_key=574b48386c370aa1572884e01bb5b6ab&flight_iata=${flight}`);
+    const res = await fetch("https://airlabs.co/api/v9/flights?api_key=ae45000c-d2b2-4c51-8411-30f0c915a163");
     const data = await res.json();
 
     if(!data.data || data.data.length === 0){
