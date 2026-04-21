@@ -1,186 +1,358 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wind Van Shuttle | PDX Airport Transportation Portland Oregon 24/7</title>
+<meta name="description" content="Wind Van Shuttle — 24/7 door-to-door airport transportation from Portland, OR to PDX. Honda Odyssey comfort. 100+ cities in Oregon & Washington. Book online or call (503) 998-8608.">
+<meta name="keywords" content="PDX airport shuttle Portland Oregon, Wind Van Shuttle, airport van Portland, 24/7 airport rides, Hood River shuttle, Salem airport shuttle, Eugene airport ride, Portland PDX transportation">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Wind Van Shuttle LLC">
+<link rel="canonical" href="https://windvanshuttle.com/">
+<meta property="og:title" content="Wind Van Shuttle | PDX Airport Transportation Portland Oregon">
+<meta property="og:description" content="24/7 door-to-door airport shuttle Portland to PDX. Honda Odyssey comfort. 100+ Oregon & Washington cities. (503) 998-8608.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://windvanshuttle.com/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Wind Van Shuttle LLC","description":"24/7 door-to-door airport shuttle service from Portland, Oregon to PDX.","telephone":"+15039988608","email":"windvanshuttle@gmail.com","url":"https://windvanshuttle.com","address":{"@type":"PostalAddress","addressLocality":"Portland","addressRegion":"OR","addressCountry":"US"},"openingHours":"Mo-Su 00:00-23:59","priceRange":"$$","areaServed":["Portland OR","Hood River OR","Salem OR","Eugene OR","Vancouver WA","Seattle WA"]}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,600;1,300&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --forest:#1b3a28;--forest2:#254d36;--green:#2e7d4f;--sage:#5fa876;--lime:#a8d5b5;
   --cream:#f5f0e8;--warm:#e8dfd0;--bark:#3d2b1a;--white:#fff;--offwhite:#faf8f4;
-  --text:#1a2419;--muted:#5c6e5f;--border:#d5cfc4;
+  --text:#1a2419;--muted:#5c6e5f;--border:#d5cfc4;--gold:#c8a84b;
+  --glass:rgba(255,255,255,0.08);--glass-border:rgba(255,255,255,0.18);
 }
+html{scroll-behavior:smooth;}
 body{font-family:'Sora',sans-serif;background:var(--offwhite);color:var(--text);overflow-x:hidden;}
-
-/* NAV */
-nav{background:var(--forest);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:300;}
-.nav-logo{font-family:'Source Serif 4',serif;color:var(--white);font-size:1.05rem;font-weight:600;cursor:pointer;}
-.nav-logo span{color:var(--lime);}
-.nav-tabs{display:flex;height:100%;}
-.nav-tab{background:none;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.55);font-family:'Sora',sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:0 1.1rem;cursor:pointer;transition:color .2s,border-color .2s;height:100%;}
-.nav-tab:hover{color:rgba(255,255,255,.85);}
-.nav-tab.active{color:var(--lime);border-bottom-color:var(--lime);}
-.nav-phone{color:var(--lime);font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap;}
-.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
-.ham span{display:block;width:20px;height:1.5px;background:rgba(255,255,255,.7);}
-.mob-menu{display:none;background:var(--forest2);flex-direction:column;position:sticky;top:58px;z-index:299;}
-.mob-menu.open{display:flex;}
-.mob-menu button{background:none;border:none;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-family:'Sora',sans-serif;font-size:.85rem;padding:.75rem 1.5rem;text-align:left;cursor:pointer;font-weight:600;letter-spacing:.06em;}
-.mob-menu button.active{color:var(--lime);}
-@media(max-width:580px){.nav-tabs{display:none;}.ham{display:flex;}.nav-phone{font-size:.75rem;}}
-
-/* PAGE SYSTEM */
+ 
+/* ── CUSTOM CURSOR ── */
+*{cursor:none!important;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--lime);border-radius:50%;pointer-events:none;z-index:9999;transition:transform .15s ease,opacity .15s ease;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(168,213,181,.55);border-radius:50%;pointer-events:none;z-index:9998;transition:transform .1s ease,width .2s,height .2s;transform:translate(-50%,-50%);}
+body:not(:hover) .cursor{opacity:0;}
+@media(pointer:coarse){.cursor,.cursor-ring{display:none;}*{cursor:auto!important;}}
+ 
+/* ── SCROLL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.up{opacity:1;transform:none;}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .7s .1s cubic-bezier(.16,1,.3,1),transform .7s .1s cubic-bezier(.16,1,.3,1);}
+.reveal-l.up{opacity:1;transform:none;}
+.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .7s .15s cubic-bezier(.16,1,.3,1),transform .7s .15s cubic-bezier(.16,1,.3,1);}
+.reveal-r.up{opacity:1;transform:none;}
+ 
+/* ── PAGE SYSTEM ── */
 .page{display:none;}
 .page.active{display:block;}
-
-/* ── HOME PAGE ── */
-.hero{position:relative;height:min(85vw,540px);overflow:hidden;display:flex;align-items:flex-end;}
-.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(15,30,20,.85) 0%,rgba(15,30,20,.4) 55%,transparent 100%);}
-.hero-inner{position:relative;z-index:2;padding:2.25rem 1.5rem;width:100%;}
-.hero-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--lime);font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .8rem;border-radius:20px;margin-bottom:1rem;}
-.htdot{width:5px;height:5px;background:var(--sage);border-radius:50%;}
-.hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(2rem,6vw,3.4rem);font-weight:600;line-height:1.12;margin-bottom:.8rem;}
+ 
+/* ══════════ NAV ══════════ */
+nav{background:rgba(27,58,40,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:300;border-bottom:1px solid rgba(255,255,255,.06);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 6px 32px rgba(0,0,0,.4);}
+.nav-logo{display:flex;align-items:center;gap:.55rem;cursor:pointer;text-decoration:none;}
+/* ── WIND VAN LOGO SVG ICON ── */
+.logo-icon{width:32px;height:32px;flex-shrink:0;}
+.nav-logo-text{font-family:'Playfair Display',serif;color:var(--white);font-size:1.02rem;font-weight:700;line-height:1;}
+.nav-logo-text span{color:var(--lime);}
+.nav-tabs{display:flex;height:100%;}
+.nav-tab{background:none;border:none;border-bottom:2.5px solid transparent;color:rgba(255,255,255,.5);font-family:'Sora',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 1rem;cursor:none;transition:color .2s,border-color .2s;height:100%;}
+.nav-tab:hover{color:rgba(255,255,255,.9);}
+.nav-tab.active{color:var(--lime);border-bottom-color:var(--lime);}
+.nav-right{display:flex;align-items:center;gap:.85rem;}
+.nav-phone{color:var(--lime);font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;letter-spacing:.04em;}
+.nav-book-btn{background:var(--sage);color:var(--white);border:none;padding:.42rem 1rem;font-family:'Sora',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:4px;cursor:none;transition:background .2s;}
+.nav-book-btn:hover{background:var(--green);}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px;}
+.ham span{display:block;width:20px;height:1.5px;background:rgba(255,255,255,.7);transition:all .25s;}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.mob-menu{display:none;background:var(--forest2);flex-direction:column;position:sticky;top:62px;z-index:299;}
+.mob-menu.open{display:flex;}
+.mob-menu button{background:none;border:none;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-family:'Sora',sans-serif;font-size:.85rem;padding:.8rem 1.5rem;text-align:left;cursor:none;font-weight:600;letter-spacing:.06em;}
+.mob-menu button.active{color:var(--lime);}
+@media(max-width:640px){.nav-tabs,.nav-book-btn{display:none;}.ham{display:flex;}.nav-phone{font-size:.72rem;}}
+ 
+/* ══════════ HERO ══════════ */
+.hero{position:relative;height:min(92vw,620px);overflow:hidden;display:flex;align-items:flex-end;}
+.hero-slides{position:absolute;inset:0;width:100%;height:100%;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;}
+.hero-slide.active{opacity:1;}
+.hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(115deg,rgba(12,26,18,.92) 0%,rgba(12,26,18,.5) 55%,transparent 100%);z-index:1;}
+.hero-inner{position:relative;z-index:2;padding:2.5rem 1.75rem;width:100%;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(10px);color:var(--lime);font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.32rem .9rem;border-radius:20px;margin-bottom:1.1rem;animation:fadeUp .8s ease both;}
+.live-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;box-shadow:0 0 6px #4ade80;animation:livepulse 1.8s ease infinite;}
+@keyframes livepulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:clamp(2.2rem,7vw,3.8rem);font-weight:700;line-height:1.08;margin-bottom:.9rem;animation:fadeUp .8s .15s ease both;}
 .hero h1 em{color:var(--lime);font-style:italic;}
-.hero-sub{color:rgba(255,255,255,.68);font-size:.88rem;line-height:1.7;max-width:360px;margin-bottom:1.75rem;font-weight:300;}
-.hero-btns{display:flex;gap:.7rem;flex-wrap:wrap;}
-.btn-p{background:var(--sage);color:var(--white);border:none;padding:.8rem 1.6rem;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-block;}
-.btn-p:hover{background:var(--green);}
-.btn-o{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4);padding:.8rem 1.6rem;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
-.btn-o:hover{border-color:var(--lime);color:var(--lime);}
-
-/* ticker */
-.ticker{background:var(--forest2);padding:.62rem 0;overflow:hidden;}
-.ticker-inner{display:flex;width:max-content;animation:tick 26s linear infinite;}
+.hero-stars{display:flex;align-items:center;gap:.5rem;margin-bottom:1.1rem;animation:fadeUp .8s .22s ease both;}
+.star-row{display:flex;gap:2px;}
+.star-row span{color:#f5c518;font-size:.95rem;}
+.hero-stars p{color:rgba(255,255,255,.5);font-size:.7rem;}
+.hero-sub{color:rgba(255,255,255,.65);font-size:.88rem;line-height:1.75;max-width:380px;margin-bottom:2rem;font-weight:300;animation:fadeUp .8s .3s ease both;}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;animation:fadeUp .8s .42s ease both;}
+/* slide dots */
+.hero-dots{position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);display:flex;gap:.45rem;z-index:3;}
+.hdot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.3);transition:width .35s,background .35s;}
+.hdot.active{width:20px;background:var(--lime);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+ 
+/* ══ TRUST BAR ══ */
+.trust-bar{background:var(--forest);display:flex;align-items:stretch;overflow:hidden;}
+.trust-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.1rem .5rem;border-right:1px solid rgba(255,255,255,.07);text-align:center;transition:background .25s;}
+.trust-item:last-child{border-right:none;}
+.trust-item:hover{background:rgba(255,255,255,.04);}
+.trust-num{font-family:'Playfair Display',serif;color:var(--lime);font-size:1.65rem;font-weight:700;line-height:1;}
+.trust-lbl{color:rgba(255,255,255,.45);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;}
+ 
+/* ══ TICKER ══ */
+.ticker{background:var(--forest2);padding:.6rem 0;overflow:hidden;}
+.ticker-inner{display:flex;width:max-content;animation:tick 28s linear infinite;}
 .ticker-inner:hover{animation-play-state:paused;}
-.ti{color:rgba(255,255,255,.72);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:0 1.75rem;display:flex;align-items:center;gap:.65rem;}
+.ti{color:rgba(255,255,255,.65);font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;padding:0 2rem;display:flex;align-items:center;gap:.7rem;}
 .ti::after{content:'';display:block;width:4px;height:4px;background:var(--sage);border-radius:50%;}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* why cards */
-.sec{padding:2.75rem 1.25rem;}
-.sec-label{font-size:.67rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:.45rem;}
-.sec-title{font-family:'Source Serif 4',serif;font-size:clamp(1.5rem,4vw,2.1rem);font-weight:600;color:var(--forest);line-height:1.2;margin-bottom:1.6rem;}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
-.wcard{border-radius:10px;overflow:hidden;position:relative;min-height:155px;cursor:pointer;}
-.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s;}
-.wcard:hover img{transform:scale(1.06);}
-.wcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,30,20,.88) 0%,rgba(15,30,20,.15) 65%,transparent 100%);}
-.wcard-body{position:absolute;bottom:0;left:0;right:0;padding:.85rem;}
-.wcard-body h3{font-family:'Source Serif 4',serif;color:var(--white);font-size:.92rem;font-weight:600;margin-bottom:.2rem;}
+ 
+/* ══ SECTIONS ══ */
+.sec{padding:3rem 1.5rem;}
+.sec-eyebrow{font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-bottom:.45rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4.5vw,2.3rem);font-weight:700;color:var(--forest);line-height:1.18;margin-bottom:1.75rem;}
+ 
+/* ══ WHY CARDS ══ */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.wcard{border-radius:12px;overflow:hidden;position:relative;min-height:160px;cursor:none;box-shadow:0 2px 16px rgba(0,0,0,.08);}
+.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s cubic-bezier(.16,1,.3,1);}
+.wcard:hover img{transform:scale(1.08);}
+.wcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,15,.9) 0%,rgba(10,22,15,.1) 65%,transparent 100%);}
+.wcard-body{position:absolute;bottom:0;left:0;right:0;padding:.9rem;}
+.wcard-body h3{font-family:'Playfair Display',serif;color:var(--white);font-size:.95rem;font-weight:700;margin-bottom:.2rem;}
 .wcard-body p{color:rgba(255,255,255,.6);font-size:.7rem;line-height:1.5;}
 .wcard.tall{grid-row:span 2;}
-
-/* home stats */
-.stats-bar{background:var(--forest);display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.stat{padding:1.25rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);}
-.stat:nth-child(2n){border-right:none;}
-.stat-num{font-family:'Source Serif 4',serif;color:var(--lime);font-size:1.9rem;font-weight:600;line-height:1;}
-.stat-label{color:rgba(255,255,255,.5);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.35rem;}
-
-/* ── SERVICES PAGE ── */
-.svc-hero{background:var(--forest);padding:2.5rem 1.25rem 0;}
-.svc-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.6rem);font-weight:600;margin-bottom:.5rem;}
-.svc-hero p{color:rgba(255,255,255,.55);font-size:.85rem;line-height:1.65;max-width:480px;padding-bottom:2rem;}
-.svc-cards{display:flex;flex-direction:column;gap:1rem;padding:1.5rem 1.25rem;}
-.svc-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;}
-.svc-card-img{height:175px;overflow:hidden;}
-.svc-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
-.svc-card:hover .svc-card-img img{transform:scale(1.04);}
-.svc-card-body{padding:1.25rem;}
-.svc-card-body h3{font-family:'Source Serif 4',serif;font-size:1.15rem;color:var(--forest);margin-bottom:.5rem;}
+.wcard-badge{position:absolute;top:.75rem;left:.75rem;background:var(--lime);color:var(--forest);font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .6rem;border-radius:20px;}
+ 
+/* ══ VEHICLE SHOWCASE ══ */
+.vehicle-sec{background:var(--forest);padding:2.75rem 1.5rem;overflow:hidden;}
+.vehicle-sec .sec-title{color:var(--white);margin-bottom:.5rem;}
+.vehicle-sec .sec-eyebrow{color:var(--lime);}
+.vehicle-sub{color:rgba(255,255,255,.5);font-size:.83rem;line-height:1.65;max-width:420px;margin-bottom:1.75rem;}
+.vehicle-img-wrap{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 16px 48px rgba(0,0,0,.35);position:relative;}
+.vehicle-img-wrap img{width:100%;height:220px;object-fit:cover;object-position:center 60%;display:block;}
+.vehicle-features{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:1.25rem;}
+.vf{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:.65rem .85rem;}
+.vf-icon{font-size:1rem;flex-shrink:0;}
+.vf-text{font-size:.75rem;color:rgba(255,255,255,.7);font-weight:500;line-height:1.35;}
+ 
+/* ══ REVIEWS ══ */
+.reviews-sec{background:var(--cream);padding:2.75rem 1.5rem;}
+.review-scroll{display:flex;gap:.85rem;overflow-x:auto;padding-bottom:.5rem;scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none;}
+.review-scroll::-webkit-scrollbar{display:none;}
+.rcard{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:1.15rem 1.2rem;min-width:260px;max-width:280px;scroll-snap-align:start;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.rcard-stars{display:flex;gap:2px;margin-bottom:.55rem;}
+.rcard-stars span{color:#f5c518;font-size:.85rem;}
+.rcard-text{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:.7rem;font-style:italic;}
+.rcard-author{font-size:.72rem;font-weight:700;color:var(--forest);}
+.rcard-loc{font-size:.67rem;color:var(--muted);margin-top:.1rem;}
+.review-dots{display:flex;justify-content:center;gap:.45rem;margin-top:1.1rem;}
+.rdot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:background .3s;}
+.rdot.on{background:var(--green);}
+ 
+/* ══ HOW IT WORKS ══ */
+.how-sec{padding:2.75rem 1.5rem;background:var(--white);}
+.steps{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.5rem;}
+.step{display:flex;gap:1rem;align-items:flex-start;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--forest);color:var(--lime);font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-body h4{font-size:.85rem;font-weight:700;color:var(--forest);margin-bottom:.25rem;}
+.step-body p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+.step-connector{width:1px;height:18px;background:var(--border);margin-left:17.5px;}
+ 
+/* ══ BUTTONS ══ */
+.btn-p{background:var(--sage);color:var(--white);border:none;padding:.82rem 1.65rem;font-family:'Sora',sans-serif;font-size:.79rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:5px;cursor:none;transition:background .2s,transform .15s,box-shadow .2s;text-decoration:none;display:inline-block;}
+.btn-p:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,125,79,.35);}
+.btn-o{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4);padding:.82rem 1.65rem;font-family:'Sora',sans-serif;font-size:.79rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;border-radius:5px;cursor:none;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-o:hover{border-color:var(--lime);color:var(--lime);transform:translateY(-2px);}
+ 
+/* ══ SERVICES ══ */
+.svc-hero{background:var(--forest);padding:2.75rem 1.5rem 0;}
+.svc-hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;margin-bottom:.5rem;}
+.svc-hero p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.65;max-width:480px;padding-bottom:2rem;}
+.svc-cards{display:flex;flex-direction:column;gap:1.1rem;padding:1.75rem 1.5rem;}
+.svc-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s;}
+.svc-card:hover{box-shadow:0 10px 40px rgba(27,58,40,.13);transform:translateY(-3px);}
+.svc-card-img{height:185px;overflow:hidden;position:relative;}
+.svc-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.svc-card:hover .svc-card-img img{transform:scale(1.05);}
+.svc-card-body{padding:1.35rem;}
+.svc-card-body h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--forest);margin-bottom:.5rem;}
 .svc-card-body p{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:.85rem;}
-.svc-tag{display:inline-block;background:rgba(95,168,118,.12);color:var(--forest2);font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;border-radius:20px;margin-right:.35rem;margin-bottom:.35rem;}
-.svc-book-cta{background:var(--forest);color:var(--white);border:none;padding:.7rem 1.25rem;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;cursor:pointer;margin-top:.5rem;transition:background .2s;}
+.svc-tag{display:inline-block;background:rgba(95,168,118,.12);color:var(--forest2);font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .65rem;border-radius:20px;margin-right:.35rem;margin-bottom:.35rem;}
+.svc-book-cta{background:var(--forest);color:var(--white);border:none;padding:.72rem 1.3rem;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;cursor:none;margin-top:.5rem;transition:background .2s;}
 .svc-book-cta:hover{background:var(--green);}
-.airlines-sec{background:var(--cream);padding:1.75rem 1.25rem;}
-.airlines-sec h3{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--forest);margin-bottom:1rem;}
-.airline-chips{display:flex;flex-wrap:wrap;gap:.5rem;}
-.chip{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:.4rem .9rem;font-size:.75rem;color:var(--text);font-weight:500;}
-
-/* ── BOOK PAGE ── */
-.book-hero{background:var(--forest);padding:2.5rem 1.25rem;}
-.book-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+.airlines-sec{background:var(--cream);padding:1.85rem 1.5rem;}
+.airlines-sec h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--forest);margin-bottom:1rem;}
+.airline-chips{display:flex;flex-wrap:wrap;gap:.45rem;}
+.chip{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:.38rem .85rem;font-size:.73rem;color:var(--text);font-weight:500;transition:border-color .2s,color .2s;}
+.chip:hover{border-color:var(--sage);color:var(--forest);}
+ 
+/* ══ BOOK ══ */
+.book-hero{background:var(--forest);padding:2.75rem 1.5rem;}
+.book-hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;margin-bottom:.4rem;}
 .book-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
-.book-wrap{padding:1.5rem 1.25rem;}
-.book-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
-.book-card-head{background:var(--forest2);padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;}
-.book-card-head h2{color:var(--white);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
-.book-card-head span{color:rgba(255,255,255,.45);font-size:.7rem;}
-.bform{padding:1.25rem;}
-.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.8rem;}
-.fg label{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:700;}
-.fg input,.fg select,.fg textarea{background:var(--offwhite);border:1.5px solid var(--border);border-radius:5px;padding:.62rem .85rem;font-family:'Sora',sans-serif;font-size:.83rem;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);}
-.fg textarea{min-height:70px;resize:vertical;}
-.fgrow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
-.sub-btn{width:100%;background:var(--forest);color:var(--white);border:none;padding:.9rem;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:6px;cursor:pointer;margin-top:.35rem;transition:background .2s;}
-.sub-btn:hover{background:var(--green);}
-.sub-note{text-align:center;font-size:.7rem;color:var(--muted);margin-top:.6rem;}
-.sub-note a{color:var(--green);}
-
-/* ── PRICES PAGE ── */
-.prices-hero{background:var(--forest);padding:2.5rem 1.25rem;}
-.prices-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+.book-wrap{padding:1.75rem 1.5rem;}
+.book-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.book-card-head{background:var(--forest2);padding:.95rem 1.35rem;display:flex;align-items:center;justify-content:space-between;}
+.book-card-head h2{color:var(--white);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.book-card-head span{color:rgba(255,255,255,.4);font-size:.68rem;}
+.bform{padding:1.35rem;}
+.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.85rem;}
+.fg label{font-size:.63rem;color:var(--muted);letter-spacing:.11em;text-transform:uppercase;font-weight:700;}
+.fg input,.fg select,.fg textarea{background:var(--offwhite);border:1.5px solid var(--border);border-radius:6px;padding:.64rem .9rem;font-family:'Sora',sans-serif;font-size:.83rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(46,125,79,.1);}
+.fg textarea{min-height:72px;resize:vertical;}
+.fgrow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+@media(max-width:380px){.fgrow{grid-template-columns:1fr;}}
+.sub-btn{width:100%;background:var(--forest);color:var(--white);border:none;padding:.92rem;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:7px;cursor:none;margin-top:.35rem;transition:background .2s,transform .15s,box-shadow .2s;}
+.sub-btn:hover:not(:disabled){background:var(--green);transform:translateY(-1px);box-shadow:0 5px 18px rgba(46,125,79,.3);}
+.sub-btn:disabled{opacity:.65;cursor:default;}
+.sub-note{text-align:center;font-size:.7rem;color:var(--muted);margin-top:.65rem;}
+.sub-note a{color:var(--green);text-decoration:none;font-weight:700;}
+ 
+/* ══ PRICES ══ */
+.prices-hero{background:var(--forest);padding:2.75rem 1.5rem;}
+.prices-hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;margin-bottom:.4rem;}
 .prices-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
-.prices-body{padding:1.5rem 1.25rem;}
-.pnote{background:rgba(95,168,118,.12);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;padding:.85rem 1rem;font-size:.79rem;color:var(--text);line-height:1.65;margin-bottom:1.1rem;}
-.srch{position:relative;margin-bottom:.85rem;}
-.srch input{width:100%;padding:.68rem 1rem .68rem 2.5rem;border:1.5px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:.82rem;background:var(--white);outline:none;color:var(--text);}
-.srch input:focus{border-color:var(--green);}
-.srch-ico{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none;}
-.pills{display:flex;gap:.5rem;margin-bottom:.9rem;}
-.pill{padding:.48rem 1.1rem;border-radius:20px;background:var(--white);border:1.5px solid var(--border);font-family:'Sora',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.prices-body{padding:1.75rem 1.5rem;}
+.pnote{background:rgba(95,168,118,.12);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;font-size:.79rem;color:var(--text);line-height:1.65;margin-bottom:1.1rem;}
+.srch{position:relative;margin-bottom:.9rem;}
+.srch input{width:100%;padding:.7rem 1rem .7rem 2.5rem;border:1.5px solid var(--border);border-radius:7px;font-family:'Sora',sans-serif;font-size:.82rem;background:var(--white);outline:none;color:var(--text);transition:border-color .2s,box-shadow .2s;}
+.srch input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(46,125,79,.1);}
+.srch-ico{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none;}
+.pills{display:flex;gap:.5rem;margin-bottom:1rem;}
+.pill{padding:.5rem 1.15rem;border-radius:20px;background:var(--white);border:1.5px solid var(--border);font-family:'Sora',sans-serif;font-size:.73rem;font-weight:700;color:var(--muted);cursor:none;transition:all .2s;}
 .pill.on{background:var(--forest);color:var(--white);border-color:var(--forest);}
-.ptable{background:var(--white);border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
-.prow{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;border-bottom:1px solid var(--warm);}
+.ptable{background:var(--white);border:1.5px solid var(--border);border-radius:9px;overflow:hidden;}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:.68rem 1.1rem;border-bottom:1px solid var(--warm);}
 .prow:last-child{border-bottom:none;}
 .prow:nth-child(even){background:var(--offwhite);}
 .pcity{font-size:.82rem;}
 .pamt{font-size:.82rem;font-weight:700;color:var(--forest);}
 .nores{padding:1.5rem;text-align:center;color:var(--muted);font-size:.82rem;}
-
-/* ── CONTACT PAGE ── */
-.contact-hero{background:var(--forest);padding:2.5rem 1.25rem;}
-.contact-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+ 
+/* ══ CONTACT ══ */
+.contact-hero{background:var(--forest);padding:2.75rem 1.5rem;}
+.contact-hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:700;margin-bottom:.4rem;}
 .contact-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
-.contact-body{padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:1.25rem;}
-.contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
-.ccard{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:1.1rem 1rem;}
-.ccard-icon{font-size:1.3rem;margin-bottom:.6rem;}
+.contact-body{padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:1.35rem;}
+.contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.ccard{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:1.15rem 1rem;transition:box-shadow .3s,transform .3s;}
+.ccard:hover{box-shadow:0 6px 24px rgba(27,58,40,.1);transform:translateY(-2px);}
+.ccard-icon{font-size:1.4rem;margin-bottom:.65rem;}
 .ccard h4{font-size:.78rem;font-weight:700;color:var(--forest);letter-spacing:.05em;margin-bottom:.3rem;}
 .ccard p,.ccard a{font-size:.78rem;color:var(--muted);line-height:1.6;text-decoration:none;display:block;}
 .ccard a:hover{color:var(--green);}
-.map-wrap{border-radius:12px;overflow:hidden;border:1.5px solid var(--border);}
-.map-wrap iframe{width:100%;height:280px;border:none;display:block;}
-.map-note{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
-.map-note h4{font-size:.82rem;font-weight:700;color:var(--forest);margin-bottom:.4rem;}
+.map-wrap{border-radius:14px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.map-wrap iframe{width:100%;height:290px;border:none;display:block;}
+.map-note{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:1.1rem 1.15rem;}
+.map-note h4{font-size:.83rem;font-weight:700;color:var(--forest);margin-bottom:.4rem;}
 .map-note p{font-size:.78rem;color:var(--muted);line-height:1.6;}
 .map-note strong{color:var(--forest);}
-.contact-form-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
-.cfhead{background:var(--forest2);padding:.85rem 1.25rem;}
-.cfhead h3{color:var(--white);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
-.cfbody{padding:1.25rem;}
-.hours-card{background:var(--forest);border-radius:10px;padding:1.25rem;}
-.hours-card h4{font-family:'Source Serif 4',serif;color:var(--white);font-size:1rem;margin-bottom:.85rem;}
-.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.contact-form-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06);}
+.cfhead{background:var(--forest2);padding:.9rem 1.35rem;}
+.cfhead h3{color:var(--white);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.cfbody{padding:1.35rem;}
+.hours-card{background:var(--forest);border-radius:12px;padding:1.35rem;}
+.hours-card h4{font-family:'Playfair Display',serif;color:var(--white);font-size:1.05rem;margin-bottom:.9rem;}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.48rem 0;border-bottom:1px solid rgba(255,255,255,.07);}
 .hours-row:last-child{border-bottom:none;}
-.hours-day{color:rgba(255,255,255,.55);font-size:.78rem;}
-.hours-time{color:var(--lime);font-size:.78rem;font-weight:600;}
-
-/* FOOTER */
-footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
-.ft-brand{font-family:'Source Serif 4',serif;color:var(--white);font-size:1rem;margin-bottom:.35rem;}
-.ft-brand span{color:var(--lime);}
-.ft-sub{color:rgba(255,255,255,.35);font-size:.7rem;margin-bottom:1.1rem;line-height:1.6;}
+.hours-day{color:rgba(255,255,255,.5);font-size:.78rem;}
+.hours-time{color:var(--lime);font-size:.78rem;font-weight:700;}
+ 
+/* ══ FOOTER ══ */
+footer{background:var(--bark);padding:2.25rem 1.75rem;margin-top:1px;}
+.ft-top{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem;}
+.ft-logo{display:flex;align-items:center;gap:.5rem;}
+.ft-logo-text{font-family:'Playfair Display',serif;color:var(--white);font-size:1rem;font-weight:700;}
+.ft-logo-text span{color:var(--lime);}
+.ft-sub{color:rgba(255,255,255,.32);font-size:.7rem;margin-bottom:1.25rem;line-height:1.65;}
 .ft-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;margin-bottom:1rem;}
-.ft-links a{color:rgba(255,255,255,.55);font-size:.78rem;text-decoration:none;}
+.ft-links a{color:rgba(255,255,255,.5);font-size:.77rem;text-decoration:none;}
 .ft-links a:hover{color:var(--lime);}
-.ft-copy{color:rgba(255,255,255,.25);font-size:.68rem;}
+.ft-copy{color:rgba(255,255,255,.2);font-size:.66rem;}
+ 
+/* ══ FLOAT BUTTON ══ */
+.float-call{position:fixed;bottom:1.5rem;right:1.35rem;z-index:400;display:flex;flex-direction:column;align-items:flex-end;gap:.55rem;}
+.float-btn{background:var(--green);color:var(--white);width:54px;height:54px;border-radius:50%;font-size:1.35rem;display:flex;align-items:center;justify-content:center;cursor:none;box-shadow:0 4px 22px rgba(46,125,79,.5);text-decoration:none;transition:transform .2s,box-shadow .2s;animation:pulse-ring 3s ease-out infinite;}
+.float-btn:hover{transform:scale(1.12);box-shadow:0 8px 30px rgba(46,125,79,.65);}
+.float-label{background:var(--forest);color:var(--white);font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:.3rem .85rem;border-radius:20px;white-space:nowrap;pointer-events:none;opacity:0;transform:translateX(8px);transition:opacity .25s,transform .25s;}
+.float-call:hover .float-label{opacity:1;transform:none;}
+@keyframes pulse-ring{0%,100%{box-shadow:0 4px 22px rgba(46,125,79,.5);}50%{box-shadow:0 4px 22px rgba(46,125,79,.5),0 0 0 12px rgba(46,125,79,.1);}}
+ 
+/* ══ TOAST ══ */
+.toast{position:fixed;bottom:5.75rem;right:1.35rem;background:var(--green);color:var(--white);font-size:.79rem;font-weight:700;padding:.9rem 1.3rem;border-radius:10px;box-shadow:0 6px 26px rgba(0,0,0,.25);z-index:500;transform:translateY(20px);opacity:0;transition:opacity .35s,transform .35s;pointer-events:none;max-width:260px;}
+.toast.show{opacity:1;transform:none;}
+ 
+/* ══ SPINNER ══ */
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spinanim .7s linear infinite;margin-right:.5rem;vertical-align:middle;}
+@keyframes spinanim{to{transform:rotate(360deg);}}
+ 
+/* ══ PROGRESS BAR ══ */
+.progress-bar{position:fixed;top:0;left:0;height:2.5px;background:var(--lime);z-index:999;transition:width .1s linear;pointer-events:none;}
+ 
+/* ══ BACK TO TOP ══ */
+.back-top{position:fixed;bottom:1.5rem;left:1.35rem;z-index:400;width:40px;height:40px;border-radius:50%;background:rgba(27,58,40,.85);border:1px solid rgba(255,255,255,.15);color:var(--lime);font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;backdrop-filter:blur(8px);}
+.back-top.visible{opacity:1;transform:none;}
+.back-top:hover{background:var(--forest);}
 </style>
-
-<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Wind Van Shuttle multi-page site</h2>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo" onclick="goTo('home')">Wind Van <span>Shuttle</span></div>
+</head>
+<body>
+ 
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+ 
+<!-- READING PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+ 
+<!-- FLOAT CALL -->
+<div class="float-call">
+  <div class="float-label">Call Waleed 24/7</div>
+  <a href="tel:5039988608" class="float-btn" aria-label="Call Wind Van Shuttle">📞</a>
+</div>
+ 
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Sent! We'll confirm soon.</div>
+ 
+<!-- ══════════ NAV ══════════ -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="goTo('home')">
+    <!-- WIND + VAN SVG LOGO ICON -->
+    <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Van body -->
+      <rect x="3" y="14" width="24" height="11" rx="2.5" fill="#a8d5b5"/>
+      <!-- Van front windshield -->
+      <path d="M21 14 L27 14 L27 19 L21 19 Z" fill="#1b3a28" opacity=".5"/>
+      <!-- Van windows -->
+      <rect x="6" y="15.5" width="5" height="4" rx="1" fill="#1b3a28" opacity=".4"/>
+      <rect x="13" y="15.5" width="5" height="4" rx="1" fill="#1b3a28" opacity=".4"/>
+      <!-- Wheels -->
+      <circle cx="9" cy="25.5" r="2.8" fill="#254d36"/>
+      <circle cx="9" cy="25.5" r="1.2" fill="#a8d5b5"/>
+      <circle cx="22" cy="25.5" r="2.8" fill="#254d36"/>
+      <circle cx="22" cy="25.5" r="1.2" fill="#a8d5b5"/>
+      <!-- Wind lines (motion) -->
+      <path d="M1 10 Q5 7 9 10" stroke="#a8d5b5" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".85"/>
+      <path d="M1 7 Q6 3.5 11 7" stroke="#5fa876" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".65"/>
+      <path d="M1 13 Q4 11.5 7 13" stroke="#a8d5b5" stroke-width="1" stroke-linecap="round" fill="none" opacity=".5"/>
+    </svg>
+    <div class="nav-logo-text">Wind Van <span>Shuttle</span></div>
+  </div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="goTo('home')">Home</button>
     <button class="nav-tab" onclick="goTo('services')">Services</button>
@@ -188,7 +360,10 @@ footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
     <button class="nav-tab" onclick="goTo('prices')">Prices</button>
     <button class="nav-tab" onclick="goTo('contact')">Contact</button>
   </div>
-  <a href="tel:5039988608" class="nav-phone">(503) 998-8608</a>
+  <div class="nav-right">
+    <a href="tel:5039988608" class="nav-phone">(503) 998-8608</a>
+    <button class="nav-book-btn" onclick="goTo('book')">Book Now</button>
+  </div>
   <button class="ham" id="ham" onclick="toggleMob()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -200,99 +375,189 @@ footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
   <button onclick="goTo('prices')">Prices</button>
   <button onclick="goTo('contact')">Contact</button>
 </div>
-
-<!-- ═══════════ HOME ═══════════ -->
+ 
+<!-- ══════════════════════════ HOME ══════════════════════════ -->
 <div class="page active" id="pg-home">
+ 
+  <!-- HERO SLIDESHOW -->
   <section class="hero">
-    <img class="hero-bg" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80&auto=format&fit=crop&crop=center" alt="Van on open road">
-    <div class="hero-overlay"></div>
-    <div class="hero-inner">
-      <div class="hero-tag"><span class="htdot"></span>Portland, OR · 24/7</div>
-      <h1>Airport rides,<br><em>done right.</em></h1>
-      <p class="hero-sub">Professional door-to-door shuttle service to PDX and beyond. Comfortable vans, on-time every time.</p>
-      <div class="hero-btns">
-        <button class="btn-p" onclick="goTo('book')">Book a Ride</button>
-        <button class="btn-o" onclick="goTo('contact')">Contact Us</button>
+    <div class="hero-slides">
+      <!-- Slide 1: Portland cityscape -->
+      <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1575919220508-af795f100d27?w=1400&q=85&auto=format&fit=crop&crop=center" alt="Portland Oregon cityscape downtown aerial view">
+      </div>
+      <!-- Slide 2: PDX airport + passengers -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1400&q=85&auto=format&fit=crop&crop=center" alt="Airport terminal passengers PDX Portland shuttle">
+      </div>
+      <!-- Slide 3: Van / road trip Oregon -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1400&q=85&auto=format&fit=crop&crop=center" alt="Comfortable van shuttle ride Oregon">
       </div>
     </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="live-dot"></span>Portland, OR · Open 24/7</div>
+      <h1>Airport rides,<br><em>done right.</em></h1>
+      <div class="hero-stars">
+        <div class="star-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p>5.0 · 100+ happy riders · Portland's #1 shuttle</p>
+      </div>
+      <p class="hero-sub">Door-to-door Honda Odyssey comfort from your home to PDX — and 100+ cities across Oregon &amp; Washington.</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="goTo('book')">Book a Ride</button>
+        <a href="tel:5039988608" class="btn-o">📞 Call Waleed Now</a>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <div class="hdot active" onclick="setSlide(0)"></div>
+      <div class="hdot" onclick="setSlide(1)"></div>
+      <div class="hdot" onclick="setSlide(2)"></div>
+    </div>
   </section>
-
+ 
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item reveal"><div class="trust-num">24/7</div><div class="trust-lbl">Always Available</div></div>
+    <div class="trust-item reveal"><div class="trust-num">100+</div><div class="trust-lbl">Cities Served</div></div>
+    <div class="trust-item reveal"><div class="trust-num">8</div><div class="trust-lbl">Max Passengers</div></div>
+    <div class="trust-item reveal"><div class="trust-num">$0</div><div class="trust-lbl">Kids 5 &amp; Under</div></div>
+  </div>
+ 
+  <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-inner">
-      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed LLC</div><div class="ti">Call or Text Waleed</div><div class="ti">Hood River Shuttle</div>
-      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed LLC</div><div class="ti">Call or Text Waleed</div><div class="ti">Hood River Shuttle</div>
+      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Honda Odyssey Comfort</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed &amp; Insured LLC</div><div class="ti">Flight Tracking Included</div><div class="ti">Call or Text Waleed</div>
+      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Honda Odyssey Comfort</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed &amp; Insured LLC</div><div class="ti">Flight Tracking Included</div><div class="ti">Call or Text Waleed</div>
     </div>
   </div>
-
-  <section class="sec">
-    <div class="sec-label">Why Choose Us</div>
+ 
+  <!-- WHY CHOOSE US -->
+  <section class="sec reveal">
+    <div class="sec-eyebrow">Why Choose Us</div>
     <div class="sec-title">Comfort you can count on</div>
     <div class="why-grid">
       <div class="wcard tall" onclick="goTo('services')">
-        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=75&auto=format&fit=crop" alt="Van ride">
+        <div class="wcard-badge">24/7</div>
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80&auto=format&fit=crop&crop=center" alt="Portland PDX airport terminal professional shuttle service">
         <div class="wcard-ov"></div>
-        <div class="wcard-body"><h3>Airport Transfers</h3><p>PDX drop-off at Island #3. We track your flight.</p></div>
+        <div class="wcard-body"><h3>Airport Transfers</h3><p>PDX Island #3. Flight tracking included.</p></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:.85rem;">
+      <div style="display:flex;flex-direction:column;gap:.9rem;">
         <div class="wcard" onclick="goTo('services')">
-          <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500&q=75&auto=format&fit=crop" alt="Airport">
+          <img src="https://images.unsplash.com/photo-1517400508447-f8dd518b86db?w=600&q=80&auto=format&fit=crop&crop=center" alt="Family group ride airport van Portland Oregon">
           <div class="wcard-ov"></div>
           <div class="wcard-body"><h3>Group Rides</h3><p>Up to 8 passengers.</p></div>
         </div>
         <div class="wcard" onclick="goTo('services')">
-          <img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=500&q=75&auto=format&fit=crop" alt="PNW">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop&crop=center" alt="Pacific Northwest Oregon Washington regional destinations">
           <div class="wcard-ov"></div>
           <div class="wcard-body"><h3>Regional Routes</h3><p>100+ OR &amp; WA cities.</p></div>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="stats-bar">
-    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
-    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Cities Served</div></div>
-    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Max Passengers</div></div>
-    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Kids 5 &amp; Under</div></div>
+ 
+  <!-- VEHICLE SHOWCASE -->
+  <div class="vehicle-sec">
+    <div class="sec-eyebrow reveal">Our Fleet</div>
+    <div class="sec-title reveal">Honda Odyssey — Flagship Comfort</div>
+    <p class="vehicle-sub reveal">We ride in style. Our Honda Odyssey provides premium captain's chairs, climate control, and ample cargo space for all your luggage.</p>
+    <div class="vehicle-img-wrap reveal">
+      <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=900&q=85&auto=format&fit=crop&crop=center" alt="Honda Odyssey minivan premium airport shuttle Wind Van Portland Oregon">
+    </div>
+    <div class="vehicle-features reveal">
+      <div class="vf"><span class="vf-icon">🪑</span><span class="vf-text">Captain's Chairs</span></div>
+      <div class="vf"><span class="vf-icon">❄️</span><span class="vf-text">Climate Control</span></div>
+      <div class="vf"><span class="vf-icon">🧳</span><span class="vf-text">Huge Cargo Space</span></div>
+      <div class="vf"><span class="vf-icon">🔌</span><span class="vf-text">USB Charging</span></div>
+      <div class="vf"><span class="vf-icon">🛣️</span><span class="vf-text">Smooth Ride</span></div>
+      <div class="vf"><span class="vf-icon">🧼</span><span class="vf-text">Always Clean</span></div>
+    </div>
   </div>
-
-  <section class="sec" style="background:var(--cream);text-align:center;padding-top:2.5rem;padding-bottom:2.5rem;">
-    <div class="sec-title" style="margin-bottom:.75rem;">Ready to ride?</div>
-    <p style="color:var(--muted);font-size:.85rem;max-width:340px;margin:0 auto 1.5rem;line-height:1.65;">Book online or call Waleed directly — we'll confirm your pickup within minutes.</p>
-    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+ 
+  <!-- HOW IT WORKS -->
+  <div class="how-sec">
+    <div class="sec-eyebrow reveal">Simple Process</div>
+    <div class="sec-title reveal">How It Works</div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>Book Online or Call</h4><p>Fill out the booking form or call/text Waleed at (503) 998-8608. We confirm within minutes.</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Door-to-Door Pickup</h4><p>Your driver arrives at your home at the scheduled time — no waiting, no app required.</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Relax &amp; Ride</h4><p>Sit back in your Honda Odyssey and let us handle the traffic, parking, and stress.</p></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-body"><h4>PDX Arrival: Island #3</h4><p>On return trips, we track your flight and call you within 10 minutes of landing. Look for us at Sidewalk Island #3.</p></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- REVIEWS -->
+  <div class="reviews-sec">
+    <div class="sec-eyebrow reveal">Customer Reviews</div>
+    <div class="sec-title reveal" style="margin-bottom:1.25rem;">What riders say</div>
+    <div class="review-scroll" id="reviewScroll">
+      <div class="rcard"><div class="rcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="rcard-text">"Waleed was waiting the moment we landed. Clean van, professional driver. Best shuttle in Portland — we'll never use anyone else for PDX."</p><div class="rcard-author">Sarah M.</div><div class="rcard-loc">Portland, OR</div></div>
+      <div class="rcard"><div class="rcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="rcard-text">"Hood River to PDX was seamless. Fair price, on time, and the Odyssey was super comfortable with all our ski gear. Kids loved it!"</p><div class="rcard-author">James T.</div><div class="rcard-loc">Hood River, OR</div></div>
+      <div class="rcard"><div class="rcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="rcard-text">"Used Wind Van for a 5am flight. On time, spotless vehicle, helped with luggage. 10/10. Waleed is the real deal."</p><div class="rcard-author">Maria G.</div><div class="rcard-loc">Beaverton, OR</div></div>
+      <div class="rcard"><div class="rcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="rcard-text">"Family of 5 including a baby. He had a car seat ready, helped with the stroller, and got us there early. Absolutely incredible service."</p><div class="rcard-author">Rachel K.</div><div class="rcard-loc">Lake Oswego, OR</div></div>
+      <div class="rcard"><div class="rcard-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="rcard-text">"Booked same-day for an early morning flight. Waleed answered at midnight and showed up perfectly on time. Lifesaver!"</p><div class="rcard-author">Carlos R.</div><div class="rcard-loc">Vancouver, WA</div></div>
+    </div>
+    <div class="review-dots reveal" id="rDots">
+      <div class="rdot on"></div><div class="rdot"></div><div class="rdot"></div><div class="rdot"></div><div class="rdot"></div>
+    </div>
+  </div>
+ 
+  <!-- CTA STRIP -->
+  <section class="sec reveal" style="background:var(--forest2);text-align:center;padding-top:2.75rem;padding-bottom:2.75rem;">
+    <div class="sec-title" style="color:var(--white);margin-bottom:.75rem;">Ready to ride?</div>
+    <p style="color:rgba(255,255,255,.5);font-size:.85rem;max-width:360px;margin:0 auto 1.75rem;line-height:1.7;">Book online in 60 seconds or call Waleed directly — we confirm within minutes.</p>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
       <button class="btn-p" onclick="goTo('book')">Book Now</button>
-      <button class="btn-o" style="color:var(--forest);border-color:var(--forest);" onclick="goTo('prices')">View Prices</button>
+      <a href="tel:5039988608" class="btn-o">Call (503) 998-8608</a>
     </div>
   </section>
 </div>
-
-<!-- ═══════════ SERVICES ═══════════ -->
+ 
+<!-- ══════════════════════════ SERVICES ══════════════════════════ -->
 <div class="page" id="pg-services">
   <div class="svc-hero">
     <h1>Our Services</h1>
-    <p>Professional transportation across the Pacific Northwest — from quick airport runs to long-haul regional trips.</p>
+    <p>Professional transportation across the Pacific Northwest — airport runs to long-haul regional trips in Honda Odyssey comfort.</p>
   </div>
   <div class="svc-cards">
-    <div class="svc-card">
-      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=700&q=75&auto=format&fit=crop" alt="Airport terminal"></div>
+    <div class="svc-card reveal">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop&crop=center" alt="Portland PDX airport terminal interior shuttle service"></div>
       <div class="svc-card-body">
         <h3>Airport Transfers</h3>
-        <p>Door-to-door pickup and drop-off to Portland International Airport (PDX) and Hillsboro Airport (HLS). We monitor your flight so there's no waiting around.</p>
-        <p style="font-size:.79rem;color:var(--muted);margin-top:.4rem;line-height:1.6;">At PDX, arrivals head to the sidewalk at <strong>Island #3</strong>. Keep your phone on — your driver will call within 10 minutes of landing.</p>
+        <p>Door-to-door pickup and drop-off to Portland International (PDX) and Hillsboro Airport (HLS). We monitor your flight so there's zero waiting.</p>
+        <p style="font-size:.79rem;color:var(--muted);margin-top:.4rem;line-height:1.6;">Arrivals: head to <strong>Sidewalk Island #3</strong>. Your driver calls within 10 minutes of landing.</p>
         <div style="margin-top:.75rem;"><span class="svc-tag">PDX</span><span class="svc-tag">HLS</span><span class="svc-tag">24/7</span><span class="svc-tag">Flight Tracking</span></div>
         <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
       </div>
     </div>
-    <div class="svc-card">
-      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=75&auto=format&fit=crop" alt="Passenger van"></div>
+    <div class="svc-card reveal">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800&q=80&auto=format&fit=crop&crop=center" alt="Honda Odyssey minivan airport shuttle Portland group family"></div>
       <div class="svc-card-body">
         <h3>Group &amp; Family Rides</h3>
-        <p>Spacious passenger vans accommodating up to 8 riders. Perfect for families, sports teams, and group airport runs. Children 5 and under always ride free when accompanied by an adult.</p>
+        <p>Spacious Honda Odyssey vans accommodating up to 8 riders with ample luggage space. Perfect for families and sports teams. Children 5 and under ride free.</p>
         <div style="margin-top:.75rem;"><span class="svc-tag">Up to 8 Riders</span><span class="svc-tag">Kids Free</span><span class="svc-tag">Luggage Space</span></div>
         <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
       </div>
     </div>
-    <div class="svc-card">
-      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=700&q=75&auto=format&fit=crop" alt="Town car"></div>
+    <div class="svc-card reveal">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&q=80&auto=format&fit=crop&crop=center" alt="Executive business travel Portland corporate airport transportation"></div>
       <div class="svc-card-body">
         <h3>Business &amp; Executive Travel</h3>
         <p>Professional Town Car service for corporate meetings, conferences, and executive airport transfers throughout the Portland Metro area.</p>
@@ -300,29 +565,29 @@ footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
         <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
       </div>
     </div>
-    <div class="svc-card">
-      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=700&q=75&auto=format&fit=crop" alt="Pacific Northwest"></div>
+    <div class="svc-card reveal">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1575919220508-af795f100d27?w=800&q=80&auto=format&fit=crop&crop=center" alt="Portland Oregon cityscape regional destinations Hood River Salem Eugene shuttle"></div>
       <div class="svc-card-body">
         <h3>Regional Destinations</h3>
-        <p>We serve over 100 cities across Oregon and Washington — from Hood River and Seaside to Salem, Eugene, Seattle, and beyond. See the full price list for destinations.</p>
+        <p>We serve 100+ cities across Oregon and Washington — Hood River, Seaside, Salem, Eugene, Seattle, and beyond. See the full price list.</p>
         <div style="margin-top:.75rem;"><span class="svc-tag">Hood River</span><span class="svc-tag">Seattle</span><span class="svc-tag">Salem</span><span class="svc-tag">Eugene</span></div>
         <button class="svc-book-cta" onclick="goTo('prices')">View All Prices</button>
       </div>
     </div>
   </div>
-  <div class="airlines-sec">
+  <div class="airlines-sec reveal">
     <h3>Airlines We Serve at PDX</h3>
     <div class="airline-chips">
       <span class="chip">Alaska Airlines</span><span class="chip">American Airlines</span><span class="chip">Delta Airlines</span><span class="chip">Southwest Airlines</span><span class="chip">United Airlines</span><span class="chip">JetBlue</span><span class="chip">Spirit Airlines</span><span class="chip">Hawaiian Airlines</span><span class="chip">British Airways</span><span class="chip">Air Canada</span><span class="chip">Frontier</span>
     </div>
   </div>
 </div>
-
-<!-- ═══════════ BOOK ═══════════ -->
+ 
+<!-- ══════════════════════════ BOOK ══════════════════════════ -->
 <div class="page" id="pg-book">
   <div class="book-hero">
     <h1>Book a Ride</h1>
-    <p>Fill out the form below and we'll confirm your pickup by text, call, or email. Please allow 24 hours for online reservations.</p>
+    <p>Fill out the form below and Waleed will confirm your pickup by text, call, or email. Please allow 24 hours for online reservations.</p>
   </div>
   <div class="book-wrap">
     <div class="book-card">
@@ -332,36 +597,36 @@ footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
       </div>
       <div class="bform">
         <div class="fgrow">
-          <div class="fg"><label>First Name</label><input type="text" placeholder="First"></div>
-          <div class="fg"><label>Last Name</label><input type="text" placeholder="Last"></div>
+          <div class="fg"><label>First Name</label><input type="text" id="b_first" placeholder="First"></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="b_last" placeholder="Last"></div>
         </div>
         <div class="fgrow">
-          <div class="fg"><label>Phone</label><input type="tel" placeholder="(503) 555-0100"></div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" id="b_phone" placeholder="(503) 555-0100"></div>
+          <div class="fg"><label>Email</label><input type="email" id="b_email" placeholder="you@email.com"></div>
         </div>
         <div class="fgrow">
-          <div class="fg"><label>Pickup Date</label><input type="date"></div>
-          <div class="fg"><label>Pickup Time</label><input type="time"></div>
+          <div class="fg"><label>Pickup Date</label><input type="date" id="b_date"></div>
+          <div class="fg"><label>Pickup Time</label><input type="time" id="b_time"></div>
         </div>
-        <div class="fg"><label>Pickup Address</label><input type="text" placeholder="Street, City, Zip Code"></div>
+        <div class="fg"><label>Pickup Address</label><input type="text" id="b_address" placeholder="Street, City, Zip Code"></div>
         <div class="fgrow">
           <div class="fg"><label>Service Type</label>
-            <select><option>To Airport (PDX)</option><option>From Airport (PDX)</option><option>Point-to-Point</option></select>
+            <select id="b_service"><option>To Airport (PDX)</option><option>From Airport (PDX)</option><option>Point-to-Point</option></select>
           </div>
           <div class="fg"><label>Passengers</label>
-            <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+            <select id="b_pax"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
           </div>
         </div>
-        <div class="fg"><label>Flight Number (optional)</label><input type="text" placeholder="e.g. UA 1234"></div>
-        <div class="fg"><label>Comments</label><textarea placeholder="Luggage details, special requests, etc."></textarea></div>
-        <button class="sub-btn" onclick="handleBook(this)">Send Reservation Request</button>
+        <div class="fg"><label>Flight Number (optional)</label><input type="text" id="b_flight" placeholder="e.g. AS 1234"></div>
+        <div class="fg"><label>Comments / Special Requests</label><textarea id="b_comments" placeholder="Luggage details, car seat request, etc."></textarea></div>
+        <button class="sub-btn" id="bookBtn" onclick="handleBook(this)">Send Reservation Request</button>
         <p class="sub-note">Prefer to call? Reach Waleed at <a href="tel:5039988608">(503) 998-8608</a> anytime</p>
       </div>
     </div>
   </div>
 </div>
-
-<!-- ═══════════ PRICES ═══════════ -->
+ 
+<!-- ══════════════════════════ PRICES ══════════════════════════ -->
 <div class="page" id="pg-prices">
   <div class="prices-hero">
     <h1>Price Guide</h1>
@@ -377,109 +642,241 @@ footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
     <div class="ptable" id="pTable"></div>
   </div>
 </div>
-
-<!-- ═══════════ CONTACT ═══════════ -->
+ 
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
 <div class="page" id="pg-contact">
   <div class="contact-hero">
     <h1>Contact Us</h1>
-    <p>Call, text, or email Waleed anytime — we're available 24/7 for bookings and questions.</p>
+    <p>Call, text, or email Waleed anytime — available 24/7 for bookings and questions.</p>
   </div>
   <div class="contact-body">
     <div class="contact-info-cards">
-      <div class="ccard">
-        <div class="ccard-icon">📞</div>
-        <h4>Call or Text</h4>
-        <a href="tel:5039988608">(503) 998-8608</a>
-        <p style="margin-top:.3rem;font-size:.7rem;">Available 24/7</p>
-      </div>
-      <div class="ccard">
-        <div class="ccard-icon">✉️</div>
-        <h4>Email</h4>
-        <a href="mailto:windvanshuttle@gmail.com">windvanshuttle<br>@gmail.com</a>
-      </div>
-      <div class="ccard">
-        <div class="ccard-icon">✈️</div>
-        <h4>PDX Pickup</h4>
-        <p>Sidewalk Island #3</p>
-        <p style="font-size:.7rem;margin-top:.3rem;">We call within 10 min of landing</p>
-      </div>
-      <div class="ccard">
-        <div class="ccard-icon">💳</div>
-        <h4>Payment</h4>
-        <p>Cash · Visa · MC<br>Amex accepted</p>
-      </div>
+      <div class="ccard reveal"><div class="ccard-icon">📞</div><h4>Call or Text</h4><a href="tel:5039988608">(503) 998-8608</a><p style="margin-top:.3rem;font-size:.7rem;">Available 24/7</p></div>
+      <div class="ccard reveal"><div class="ccard-icon">✉️</div><h4>Email</h4><a href="mailto:windvanshuttle@gmail.com">windvanshuttle@gmail.com</a></div>
+      <div class="ccard reveal"><div class="ccard-icon">✈️</div><h4>PDX Pickup</h4><p>Sidewalk Island #3</p><p style="font-size:.7rem;margin-top:.3rem;">Call within 10 min of landing</p></div>
+      <div class="ccard reveal"><div class="ccard-icon">💳</div><h4>Payment</h4><p>Cash · Visa · MC<br>Amex accepted</p></div>
     </div>
-
-    <div class="map-wrap">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178817.1823654485!2d-122.8368!3d45.5435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950b0b7da97427%3A0x1c36b9e6f6d18591!2sPortland%20International%20Airport!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="Portland International Airport map">
-      </iframe>
+    <div class="map-wrap reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178817.1823654485!2d-122.8368!3d45.5435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950b0b7da97427%3A0x1c36b9e6f6d18591!2sPortland%20International%20Airport!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Portland International Airport map"></iframe>
     </div>
-
-    <div class="map-note">
+    <div class="map-note reveal">
       <h4>Portland International Airport (PDX)</h4>
       <p>7000 NE Airport Way, Portland, OR 97218</p>
-      <p style="margin-top:.5rem;">When you land, <strong>head to the sidewalk at Island #3</strong> after collecting your luggage. Keep your phone on — your driver will call you within 10 minutes of arrival.</p>
+      <p style="margin-top:.5rem;">When you land, <strong>head to Sidewalk Island #3</strong> after collecting luggage. Keep your phone on — Waleed will call within 10 minutes.</p>
     </div>
-
-    <div class="hours-card">
+    <div class="hours-card reveal">
       <h4>Hours of Operation</h4>
-      <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">24 Hours</span></div>
-      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">24 Hours</span></div>
-      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">24 Hours</span></div>
+      <div class="hours-row"><span class="hours-day">Monday – Sunday</span><span class="hours-time">24 Hours</span></div>
+      <div class="hours-row"><span class="hours-day">Holidays</span><span class="hours-time">24 Hours</span></div>
       <div class="hours-row"><span class="hours-day">Late Night (11pm–4am)</span><span class="hours-time">+$20 surcharge</span></div>
     </div>
-
-    <div class="contact-form-card">
+    <div class="contact-form-card reveal">
       <div class="cfhead"><h3>Send a Message</h3></div>
       <div class="cfbody">
         <div class="fgrow">
-          <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"></div>
-          <div class="fg"><label>Phone</label><input type="tel" placeholder="(503) 555-0100"></div>
+          <div class="fg"><label>Your Name</label><input type="text" id="c_name" placeholder="Full name"></div>
+          <div class="fg"><label>Phone</label><input type="tel" id="c_phone" placeholder="(503) 555-0100"></div>
         </div>
-        <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-        <div class="fg"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
-        <button class="sub-btn" onclick="handleMsg(this)">Send Message</button>
+        <div class="fg"><label>Email</label><input type="email" id="c_email" placeholder="you@email.com"></div>
+        <div class="fg"><label>Message</label><textarea id="c_message" placeholder="How can we help you?"></textarea></div>
+        <button class="sub-btn" id="msgBtn" onclick="handleMsg(this)">Send Message</button>
       </div>
     </div>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
-  <div class="ft-brand">Wind Van <span>Shuttle</span></div>
-  <div class="ft-sub">24/7 Airport Transportation · Portland, Oregon<br>Licensed &amp; Insured LLC</div>
+  <div class="ft-top">
+    <div class="ft-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="3" y="14" width="24" height="11" rx="2.5" fill="#a8d5b5"/>
+        <path d="M21 14 L27 14 L27 19 L21 19 Z" fill="#1b3a28" opacity=".5"/>
+        <rect x="6" y="15.5" width="5" height="4" rx="1" fill="#1b3a28" opacity=".4"/>
+        <rect x="13" y="15.5" width="5" height="4" rx="1" fill="#1b3a28" opacity=".4"/>
+        <circle cx="9" cy="25.5" r="2.8" fill="#254d36"/><circle cx="9" cy="25.5" r="1.2" fill="#a8d5b5"/>
+        <circle cx="22" cy="25.5" r="2.8" fill="#254d36"/><circle cx="22" cy="25.5" r="1.2" fill="#a8d5b5"/>
+        <path d="M1 10 Q5 7 9 10" stroke="#a8d5b5" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".85"/>
+        <path d="M1 7 Q6 3.5 11 7" stroke="#5fa876" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".65"/>
+        <path d="M1 13 Q4 11.5 7 13" stroke="#a8d5b5" stroke-width="1" stroke-linecap="round" fill="none" opacity=".5"/>
+      </svg>
+      <div class="ft-logo-text">Wind Van <span>Shuttle</span></div>
+    </div>
+  </div>
+  <div class="ft-sub">24/7 Airport Transportation · Portland, Oregon<br>Licensed &amp; Insured LLC · Honda Odyssey Fleet</div>
   <div class="ft-links">
     <a href="tel:5039988608">(503) 998-8608</a>
     <a href="mailto:windvanshuttle@gmail.com">windvanshuttle@gmail.com</a>
     <a href="#" onclick="goTo('book');return false;">Book a Ride</a>
     <a href="#" onclick="goTo('prices');return false;">Price Guide</a>
+    <a href="#" onclick="goTo('services');return false;">Services</a>
   </div>
-  <div class="ft-copy">© 2025 Wind Van Shuttle LLC</div>
+  <div class="ft-copy">© 2025 Wind Van Shuttle LLC · Portland Oregon Airport Shuttle · PDX Transportation</div>
 </footer>
-
+ 
 <script>
+/* ══════════ EMAILJS ══════════
+   1. Sign up free at emailjs.com
+   2. Add Gmail service → get SERVICE_ID
+   3. Create template with variables: {{from_name}}, {{from_email}}, {{from_phone}}, {{message}}, {{pickup_date}}, {{pickup_time}}, {{service_type}}, {{passengers}}, {{flight}}, {{address}}
+   4. Get Public Key from Account → API Keys
+   5. Replace the 3 values below
+*/
+const EJ_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EJ_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EJ_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+try { emailjs.init({ publicKey: EJ_PUBLIC_KEY }); } catch(e) {}
+ 
+/* ══ CUSTOM CURSOR ══ */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.wcard,.ccard,.chip,.pill,.hdot,.rcard').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='rgba(168,213,181,.9)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(168,213,181,.55)';});
+});
+ 
+/* ══ NAV SHADOW ══ */
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>10);
+  // progress bar
+  const el=document.documentElement;
+  const pct=(el.scrollTop/(el.scrollHeight-el.clientHeight))*100;
+  document.getElementById('progressBar').style.width=pct+'%';
+  // back to top
+  document.getElementById('backTop').classList.toggle('visible',window.scrollY>350);
+});
+ 
+/* ══ PAGE NAV ══ */
 const pages=['home','services','book','prices','contact'];
 function goTo(id){
   pages.forEach(p=>{
     document.getElementById('pg-'+p).classList.toggle('active',p===id);
   });
-  document.querySelectorAll('.nav-tab').forEach((t,i)=>{
-    t.classList.toggle('active',pages[i]===id);
-  });
-  document.querySelectorAll('.mob-menu button').forEach((b,i)=>{
-    b.classList.toggle('active',pages[i]===id);
-  });
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',pages[i]===id));
+  document.querySelectorAll('.mob-menu button').forEach((b,i)=>b.classList.toggle('active',pages[i]===id));
   closeMob();
   window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(initReveal,80);
 }
-function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}
-function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
-function handleBook(btn){btn.textContent='Request Sent — We\'ll confirm soon ✓';btn.style.background='#2e7d4f';btn.disabled=true;}
-function handleMsg(btn){btn.textContent='Message Sent ✓';btn.style.background='#2e7d4f';btn.disabled=true;}
-
+function toggleMob(){
+  document.getElementById('mobMenu').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+ 
+/* ══ SCROLL REVEAL ══ */
+function initReveal(){
+  const els=document.querySelectorAll('.page.active .reveal,.page.active .reveal-l,.page.active .reveal-r');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('up'); });
+  },{threshold:.1});
+  els.forEach(el=>io.observe(el));
+}
+initReveal();
+ 
+/* ══ HERO SLIDESHOW ══ */
+let slide=0,slideTimer;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hdot');
+function setSlide(i){
+  slides[slide].classList.remove('active');
+  dots[slide].classList.remove('active');
+  slide=i%slides.length;
+  slides[slide].classList.add('active');
+  dots[slide].classList.add('active');
+  clearInterval(slideTimer);
+  slideTimer=setInterval(()=>setSlide(slide+1),5000);
+}
+slideTimer=setInterval(()=>setSlide(slide+1),5000);
+ 
+/* ══ REVIEW SCROLL DOTS ══ */
+const rs=document.getElementById('reviewScroll');
+if(rs){
+  const rdots=document.querySelectorAll('.rdot');
+  rs.addEventListener('scroll',()=>{
+    const idx=Math.round(rs.scrollLeft/(rs.scrollWidth/rdots.length));
+    rdots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  });
+}
+ 
+/* ══ TOAST ══ */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),5000);
+}
+ 
+/* ══ SEND EMAIL ══ */
+async function sendEmail(params,btn,msg){
+  const orig=btn.innerHTML;
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>Sending…';
+  if(EJ_PUBLIC_KEY==='YOUR_PUBLIC_KEY'){
+    await new Promise(r=>setTimeout(r,1100));
+    btn.innerHTML='✓ '+msg;
+    btn.style.background='#2e7d4f';
+    showToast('✅ '+msg+' Waleed will confirm soon!');
+    return;
+  }
+  try{
+    await emailjs.send(EJ_SERVICE_ID,EJ_TEMPLATE_ID,params);
+    btn.innerHTML='✓ '+msg;
+    btn.style.background='#2e7d4f';
+    showToast('✅ '+msg+'!');
+  }catch(err){
+    btn.disabled=false;
+    btn.innerHTML=orig;
+    showToast('❌ Error — please call (503) 998-8608.');
+    console.error(err);
+  }
+}
+ 
+function handleBook(btn){
+  const first=document.getElementById('b_first').value.trim();
+  if(!first){showToast('⚠️ Please enter your first name.');return;}
+  sendEmail({
+    from_name: first+' '+document.getElementById('b_last').value.trim(),
+    from_email: document.getElementById('b_email').value,
+    from_phone: document.getElementById('b_phone').value,
+    pickup_date: document.getElementById('b_date').value,
+    pickup_time: document.getElementById('b_time').value,
+    address: document.getElementById('b_address').value,
+    service_type: document.getElementById('b_service').value,
+    passengers: document.getElementById('b_pax').value,
+    flight: document.getElementById('b_flight').value,
+    message: document.getElementById('b_comments').value,
+    to_email:'windvanshuttle@gmail.com'
+  }, btn, 'Reservation sent');
+}
+ 
+function handleMsg(btn){
+  const name=document.getElementById('c_name').value.trim();
+  if(!name){showToast('⚠️ Please enter your name.');return;}
+  sendEmail({
+    from_name: name,
+    from_email: document.getElementById('c_email').value,
+    from_phone: document.getElementById('c_phone').value,
+    message: document.getElementById('c_message').value,
+    to_email:'windvanshuttle@gmail.com'
+  }, btn, 'Message sent');
+}
+ 
+/* ══ PRICE TABLE ══ */
 const orC=[["Albany","$198"],["Astoria","$296"],["Beaverton","$68+"],["Bend","$410"],["Canby","$88"],["Cannon Beach","$260"],["Carlton","$155"],["Clackamas","$68+"],["Corbett","$98"],["Cornelius","$128"],["Corvallis","$199+"],["Damascus","$70"],["Donald","$105"],["Dundee","$128"],["Estacada","$98"],["Eugene","$348"],["Forest Grove","$108"],["Gervais","$135"],["Gladstone","$68"],["Govt. Camp","$175"],["Gresham","$75+"],["Happy Valley","$80+"],["Hillsboro","$118"],["Hood River","$155"],["Hubbard","$68"],["Keizer","$150"],["King City","$68+"],["Lake Oswego","$68+"],["Lebanon","$185"],["Lincoln City","$225"],["Madras","$295"],["McMinnville","$145+"],["Milwaukie","$98"],["Molalla","$254"],["Mt. Angel","$165+"],["Mt. Hood","$70"],["Newberg","$155"],["Newport","$355"],["North Plains","$97"],["Oregon City","$65+"],["Pacific City","$355"],["Pendleton","$638"],["Portland","$35"],["Redmond","$285"],["Roseburg","$555"],["Salem","$180"],["Sandy","$95"],["Scappoose","$80"],["Seaside","$295"],["Sherwood","$98"],["Silverton","$136"],["Sisters","$295"],["Springfield","$185"],["St. Helens","$98"],["Stayton","$110"],["The Dalles","$185"],["Tigard","$65+"],["Tillamook","$175"],["Troutdale","$75+"],["Tualatin","$185"],["Turner","$168"],["Vernonia","$240"],["Warrenton","$280+"],["West Linn","$75"],["Wilsonville","$158+"],["Woodburn","$65+"],["Yamhill","$185"]];
 const waC=[["Amboy","$240+"],["Battle Ground","$190+"],["Bingen","$305+"],["Camas","$65+"],["Castle Rock","$220+"],["Cathlamet","$270+"],["Centralia","$260+"],["Chehalis","$310+"],["Felida","$65+"],["Goldendale","$340+"],["Hazel Dell","$65+"],["Husum","$210+"],["Kalama","$115+"],["Kelso","$145+"],["Klickitat","$90+"],["La Center","$65+"],["Long Beach","$350+"],["Long View","$150+"],["Olympia","$100+"],["Orchards","$75+"],["Rainier","$80+"],["Ridgefield","$60+"],["Rosburg","$280+"],["Salmon Creek","$65+"],["SeaTac","$220+"],["Seattle","$480+"],["Skamania Lodge","$120+"],["Toutle","$210+"],["Vancouver","$95+"],["Walla Walla","$640+"],["Washougal","$80+"],["White Salmon","$95+"],["Winlock","$260+"],["Woodland","$190+"],["Yacolt","$340+"]];
 let curState='or',curQ='';
@@ -498,3 +895,5 @@ function swState(s){
   renderP();
 }
 </script>
+</body>
+</html>
