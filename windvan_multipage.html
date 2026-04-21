@@ -1,0 +1,500 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,600;1,300&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --forest:#1b3a28;--forest2:#254d36;--green:#2e7d4f;--sage:#5fa876;--lime:#a8d5b5;
+  --cream:#f5f0e8;--warm:#e8dfd0;--bark:#3d2b1a;--white:#fff;--offwhite:#faf8f4;
+  --text:#1a2419;--muted:#5c6e5f;--border:#d5cfc4;
+}
+body{font-family:'Sora',sans-serif;background:var(--offwhite);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{background:var(--forest);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:300;}
+.nav-logo{font-family:'Source Serif 4',serif;color:var(--white);font-size:1.05rem;font-weight:600;cursor:pointer;}
+.nav-logo span{color:var(--lime);}
+.nav-tabs{display:flex;height:100%;}
+.nav-tab{background:none;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.55);font-family:'Sora',sans-serif;font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:0 1.1rem;cursor:pointer;transition:color .2s,border-color .2s;height:100%;}
+.nav-tab:hover{color:rgba(255,255,255,.85);}
+.nav-tab.active{color:var(--lime);border-bottom-color:var(--lime);}
+.nav-phone{color:var(--lime);font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap;}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.ham span{display:block;width:20px;height:1.5px;background:rgba(255,255,255,.7);}
+.mob-menu{display:none;background:var(--forest2);flex-direction:column;position:sticky;top:58px;z-index:299;}
+.mob-menu.open{display:flex;}
+.mob-menu button{background:none;border:none;border-bottom:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-family:'Sora',sans-serif;font-size:.85rem;padding:.75rem 1.5rem;text-align:left;cursor:pointer;font-weight:600;letter-spacing:.06em;}
+.mob-menu button.active{color:var(--lime);}
+@media(max-width:580px){.nav-tabs{display:none;}.ham{display:flex;}.nav-phone{font-size:.75rem;}}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ── HOME PAGE ── */
+.hero{position:relative;height:min(85vw,540px);overflow:hidden;display:flex;align-items:flex-end;}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(15,30,20,.85) 0%,rgba(15,30,20,.4) 55%,transparent 100%);}
+.hero-inner{position:relative;z-index:2;padding:2.25rem 1.5rem;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--lime);font-size:.67rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .8rem;border-radius:20px;margin-bottom:1rem;}
+.htdot{width:5px;height:5px;background:var(--sage);border-radius:50%;}
+.hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(2rem,6vw,3.4rem);font-weight:600;line-height:1.12;margin-bottom:.8rem;}
+.hero h1 em{color:var(--lime);font-style:italic;}
+.hero-sub{color:rgba(255,255,255,.68);font-size:.88rem;line-height:1.7;max-width:360px;margin-bottom:1.75rem;font-weight:300;}
+.hero-btns{display:flex;gap:.7rem;flex-wrap:wrap;}
+.btn-p{background:var(--sage);color:var(--white);border:none;padding:.8rem 1.6rem;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:background .2s;text-decoration:none;display:inline-block;}
+.btn-p:hover{background:var(--green);}
+.btn-o{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.4);padding:.8rem 1.6rem;font-family:'Sora',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-o:hover{border-color:var(--lime);color:var(--lime);}
+
+/* ticker */
+.ticker{background:var(--forest2);padding:.62rem 0;overflow:hidden;}
+.ticker-inner{display:flex;width:max-content;animation:tick 26s linear infinite;}
+.ticker-inner:hover{animation-play-state:paused;}
+.ti{color:rgba(255,255,255,.72);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:0 1.75rem;display:flex;align-items:center;gap:.65rem;}
+.ti::after{content:'';display:block;width:4px;height:4px;background:var(--sage);border-radius:50%;}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* why cards */
+.sec{padding:2.75rem 1.25rem;}
+.sec-label{font-size:.67rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:.45rem;}
+.sec-title{font-family:'Source Serif 4',serif;font-size:clamp(1.5rem,4vw,2.1rem);font-weight:600;color:var(--forest);line-height:1.2;margin-bottom:1.6rem;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.wcard{border-radius:10px;overflow:hidden;position:relative;min-height:155px;cursor:pointer;}
+.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s;}
+.wcard:hover img{transform:scale(1.06);}
+.wcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,30,20,.88) 0%,rgba(15,30,20,.15) 65%,transparent 100%);}
+.wcard-body{position:absolute;bottom:0;left:0;right:0;padding:.85rem;}
+.wcard-body h3{font-family:'Source Serif 4',serif;color:var(--white);font-size:.92rem;font-weight:600;margin-bottom:.2rem;}
+.wcard-body p{color:rgba(255,255,255,.6);font-size:.7rem;line-height:1.5;}
+.wcard.tall{grid-row:span 2;}
+
+/* home stats */
+.stats-bar{background:var(--forest);display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.stat{padding:1.25rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);}
+.stat:nth-child(2n){border-right:none;}
+.stat-num{font-family:'Source Serif 4',serif;color:var(--lime);font-size:1.9rem;font-weight:600;line-height:1;}
+.stat-label{color:rgba(255,255,255,.5);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.35rem;}
+
+/* ── SERVICES PAGE ── */
+.svc-hero{background:var(--forest);padding:2.5rem 1.25rem 0;}
+.svc-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.6rem);font-weight:600;margin-bottom:.5rem;}
+.svc-hero p{color:rgba(255,255,255,.55);font-size:.85rem;line-height:1.65;max-width:480px;padding-bottom:2rem;}
+.svc-cards{display:flex;flex-direction:column;gap:1rem;padding:1.5rem 1.25rem;}
+.svc-card{background:var(--white);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;}
+.svc-card-img{height:175px;overflow:hidden;}
+.svc-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.svc-card:hover .svc-card-img img{transform:scale(1.04);}
+.svc-card-body{padding:1.25rem;}
+.svc-card-body h3{font-family:'Source Serif 4',serif;font-size:1.15rem;color:var(--forest);margin-bottom:.5rem;}
+.svc-card-body p{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:.85rem;}
+.svc-tag{display:inline-block;background:rgba(95,168,118,.12);color:var(--forest2);font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .7rem;border-radius:20px;margin-right:.35rem;margin-bottom:.35rem;}
+.svc-book-cta{background:var(--forest);color:var(--white);border:none;padding:.7rem 1.25rem;font-family:'Sora',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;cursor:pointer;margin-top:.5rem;transition:background .2s;}
+.svc-book-cta:hover{background:var(--green);}
+.airlines-sec{background:var(--cream);padding:1.75rem 1.25rem;}
+.airlines-sec h3{font-family:'Source Serif 4',serif;font-size:1.1rem;color:var(--forest);margin-bottom:1rem;}
+.airline-chips{display:flex;flex-wrap:wrap;gap:.5rem;}
+.chip{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:.4rem .9rem;font-size:.75rem;color:var(--text);font-weight:500;}
+
+/* ── BOOK PAGE ── */
+.book-hero{background:var(--forest);padding:2.5rem 1.25rem;}
+.book-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+.book-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
+.book-wrap{padding:1.5rem 1.25rem;}
+.book-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.book-card-head{background:var(--forest2);padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;}
+.book-card-head h2{color:var(--white);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
+.book-card-head span{color:rgba(255,255,255,.45);font-size:.7rem;}
+.bform{padding:1.25rem;}
+.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.8rem;}
+.fg label{font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:700;}
+.fg input,.fg select,.fg textarea{background:var(--offwhite);border:1.5px solid var(--border);border-radius:5px;padding:.62rem .85rem;font-family:'Sora',sans-serif;font-size:.83rem;color:var(--text);outline:none;transition:border-color .2s;width:100%;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);}
+.fg textarea{min-height:70px;resize:vertical;}
+.fgrow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.sub-btn{width:100%;background:var(--forest);color:var(--white);border:none;padding:.9rem;font-family:'Sora',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;border-radius:6px;cursor:pointer;margin-top:.35rem;transition:background .2s;}
+.sub-btn:hover{background:var(--green);}
+.sub-note{text-align:center;font-size:.7rem;color:var(--muted);margin-top:.6rem;}
+.sub-note a{color:var(--green);}
+
+/* ── PRICES PAGE ── */
+.prices-hero{background:var(--forest);padding:2.5rem 1.25rem;}
+.prices-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+.prices-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
+.prices-body{padding:1.5rem 1.25rem;}
+.pnote{background:rgba(95,168,118,.12);border-left:3px solid var(--sage);border-radius:0 6px 6px 0;padding:.85rem 1rem;font-size:.79rem;color:var(--text);line-height:1.65;margin-bottom:1.1rem;}
+.srch{position:relative;margin-bottom:.85rem;}
+.srch input{width:100%;padding:.68rem 1rem .68rem 2.5rem;border:1.5px solid var(--border);border-radius:6px;font-family:'Sora',sans-serif;font-size:.82rem;background:var(--white);outline:none;color:var(--text);}
+.srch input:focus{border-color:var(--green);}
+.srch-ico{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none;}
+.pills{display:flex;gap:.5rem;margin-bottom:.9rem;}
+.pill{padding:.48rem 1.1rem;border-radius:20px;background:var(--white);border:1.5px solid var(--border);font-family:'Sora',sans-serif;font-size:.74rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.pill.on{background:var(--forest);color:var(--white);border-color:var(--forest);}
+.ptable{background:var(--white);border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:.65rem 1rem;border-bottom:1px solid var(--warm);}
+.prow:last-child{border-bottom:none;}
+.prow:nth-child(even){background:var(--offwhite);}
+.pcity{font-size:.82rem;}
+.pamt{font-size:.82rem;font-weight:700;color:var(--forest);}
+.nores{padding:1.5rem;text-align:center;color:var(--muted);font-size:.82rem;}
+
+/* ── CONTACT PAGE ── */
+.contact-hero{background:var(--forest);padding:2.5rem 1.25rem;}
+.contact-hero h1{font-family:'Source Serif 4',serif;color:var(--white);font-size:clamp(1.7rem,5vw,2.4rem);font-weight:600;margin-bottom:.4rem;}
+.contact-hero p{color:rgba(255,255,255,.5);font-size:.82rem;line-height:1.6;}
+.contact-body{padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:1.25rem;}
+.contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.ccard{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:1.1rem 1rem;}
+.ccard-icon{font-size:1.3rem;margin-bottom:.6rem;}
+.ccard h4{font-size:.78rem;font-weight:700;color:var(--forest);letter-spacing:.05em;margin-bottom:.3rem;}
+.ccard p,.ccard a{font-size:.78rem;color:var(--muted);line-height:1.6;text-decoration:none;display:block;}
+.ccard a:hover{color:var(--green);}
+.map-wrap{border-radius:12px;overflow:hidden;border:1.5px solid var(--border);}
+.map-wrap iframe{width:100%;height:280px;border:none;display:block;}
+.map-note{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:1rem 1.1rem;}
+.map-note h4{font-size:.82rem;font-weight:700;color:var(--forest);margin-bottom:.4rem;}
+.map-note p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+.map-note strong{color:var(--forest);}
+.contact-form-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.cfhead{background:var(--forest2);padding:.85rem 1.25rem;}
+.cfhead h3{color:var(--white);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
+.cfbody{padding:1.25rem;}
+.hours-card{background:var(--forest);border-radius:10px;padding:1.25rem;}
+.hours-card h4{font-family:'Source Serif 4',serif;color:var(--white);font-size:1rem;margin-bottom:.85rem;}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.hours-row:last-child{border-bottom:none;}
+.hours-day{color:rgba(255,255,255,.55);font-size:.78rem;}
+.hours-time{color:var(--lime);font-size:.78rem;font-weight:600;}
+
+/* FOOTER */
+footer{background:var(--bark);padding:2rem 1.5rem;margin-top:1px;}
+.ft-brand{font-family:'Source Serif 4',serif;color:var(--white);font-size:1rem;margin-bottom:.35rem;}
+.ft-brand span{color:var(--lime);}
+.ft-sub{color:rgba(255,255,255,.35);font-size:.7rem;margin-bottom:1.1rem;line-height:1.6;}
+.ft-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;margin-bottom:1rem;}
+.ft-links a{color:rgba(255,255,255,.55);font-size:.78rem;text-decoration:none;}
+.ft-links a:hover{color:var(--lime);}
+.ft-copy{color:rgba(255,255,255,.25);font-size:.68rem;}
+</style>
+
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Wind Van Shuttle multi-page site</h2>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="goTo('home')">Wind Van <span>Shuttle</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="goTo('home')">Home</button>
+    <button class="nav-tab" onclick="goTo('services')">Services</button>
+    <button class="nav-tab" onclick="goTo('book')">Book</button>
+    <button class="nav-tab" onclick="goTo('prices')">Prices</button>
+    <button class="nav-tab" onclick="goTo('contact')">Contact</button>
+  </div>
+  <a href="tel:5039988608" class="nav-phone">(503) 998-8608</a>
+  <button class="ham" id="ham" onclick="toggleMob()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <button onclick="goTo('home')">Home</button>
+  <button onclick="goTo('services')">Services</button>
+  <button onclick="goTo('book')">Book a Ride</button>
+  <button onclick="goTo('prices')">Prices</button>
+  <button onclick="goTo('contact')">Contact</button>
+</div>
+
+<!-- ═══════════ HOME ═══════════ -->
+<div class="page active" id="pg-home">
+  <section class="hero">
+    <img class="hero-bg" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80&auto=format&fit=crop&crop=center" alt="Van on open road">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-tag"><span class="htdot"></span>Portland, OR · 24/7</div>
+      <h1>Airport rides,<br><em>done right.</em></h1>
+      <p class="hero-sub">Professional door-to-door shuttle service to PDX and beyond. Comfortable vans, on-time every time.</p>
+      <div class="hero-btns">
+        <button class="btn-p" onclick="goTo('book')">Book a Ride</button>
+        <button class="btn-o" onclick="goTo('contact')">Contact Us</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed LLC</div><div class="ti">Call or Text Waleed</div><div class="ti">Hood River Shuttle</div>
+      <div class="ti">24/7 Service</div><div class="ti">PDX Airport Specialist</div><div class="ti">Kids 5 &amp; Under Free</div><div class="ti">Oregon &amp; Washington Routes</div><div class="ti">All Credit Cards Accepted</div><div class="ti">Licensed LLC</div><div class="ti">Call or Text Waleed</div><div class="ti">Hood River Shuttle</div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="sec-label">Why Choose Us</div>
+    <div class="sec-title">Comfort you can count on</div>
+    <div class="why-grid">
+      <div class="wcard tall" onclick="goTo('services')">
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=75&auto=format&fit=crop" alt="Van ride">
+        <div class="wcard-ov"></div>
+        <div class="wcard-body"><h3>Airport Transfers</h3><p>PDX drop-off at Island #3. We track your flight.</p></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.85rem;">
+        <div class="wcard" onclick="goTo('services')">
+          <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500&q=75&auto=format&fit=crop" alt="Airport">
+          <div class="wcard-ov"></div>
+          <div class="wcard-body"><h3>Group Rides</h3><p>Up to 8 passengers.</p></div>
+        </div>
+        <div class="wcard" onclick="goTo('services')">
+          <img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=500&q=75&auto=format&fit=crop" alt="PNW">
+          <div class="wcard-ov"></div>
+          <div class="wcard-body"><h3>Regional Routes</h3><p>100+ OR &amp; WA cities.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Available</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Cities Served</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Max Passengers</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Kids 5 &amp; Under</div></div>
+  </div>
+
+  <section class="sec" style="background:var(--cream);text-align:center;padding-top:2.5rem;padding-bottom:2.5rem;">
+    <div class="sec-title" style="margin-bottom:.75rem;">Ready to ride?</div>
+    <p style="color:var(--muted);font-size:.85rem;max-width:340px;margin:0 auto 1.5rem;line-height:1.65;">Book online or call Waleed directly — we'll confirm your pickup within minutes.</p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-p" onclick="goTo('book')">Book Now</button>
+      <button class="btn-o" style="color:var(--forest);border-color:var(--forest);" onclick="goTo('prices')">View Prices</button>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<div class="page" id="pg-services">
+  <div class="svc-hero">
+    <h1>Our Services</h1>
+    <p>Professional transportation across the Pacific Northwest — from quick airport runs to long-haul regional trips.</p>
+  </div>
+  <div class="svc-cards">
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=700&q=75&auto=format&fit=crop" alt="Airport terminal"></div>
+      <div class="svc-card-body">
+        <h3>Airport Transfers</h3>
+        <p>Door-to-door pickup and drop-off to Portland International Airport (PDX) and Hillsboro Airport (HLS). We monitor your flight so there's no waiting around.</p>
+        <p style="font-size:.79rem;color:var(--muted);margin-top:.4rem;line-height:1.6;">At PDX, arrivals head to the sidewalk at <strong>Island #3</strong>. Keep your phone on — your driver will call within 10 minutes of landing.</p>
+        <div style="margin-top:.75rem;"><span class="svc-tag">PDX</span><span class="svc-tag">HLS</span><span class="svc-tag">24/7</span><span class="svc-tag">Flight Tracking</span></div>
+        <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=75&auto=format&fit=crop" alt="Passenger van"></div>
+      <div class="svc-card-body">
+        <h3>Group &amp; Family Rides</h3>
+        <p>Spacious passenger vans accommodating up to 8 riders. Perfect for families, sports teams, and group airport runs. Children 5 and under always ride free when accompanied by an adult.</p>
+        <div style="margin-top:.75rem;"><span class="svc-tag">Up to 8 Riders</span><span class="svc-tag">Kids Free</span><span class="svc-tag">Luggage Space</span></div>
+        <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=700&q=75&auto=format&fit=crop" alt="Town car"></div>
+      <div class="svc-card-body">
+        <h3>Business &amp; Executive Travel</h3>
+        <p>Professional Town Car service for corporate meetings, conferences, and executive airport transfers throughout the Portland Metro area.</p>
+        <div style="margin-top:.75rem;"><span class="svc-tag">Town Car</span><span class="svc-tag">Corporate</span><span class="svc-tag">On-Time</span></div>
+        <button class="svc-book-cta" onclick="goTo('book')">Book This Service</button>
+      </div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-card-img"><img src="https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=700&q=75&auto=format&fit=crop" alt="Pacific Northwest"></div>
+      <div class="svc-card-body">
+        <h3>Regional Destinations</h3>
+        <p>We serve over 100 cities across Oregon and Washington — from Hood River and Seaside to Salem, Eugene, Seattle, and beyond. See the full price list for destinations.</p>
+        <div style="margin-top:.75rem;"><span class="svc-tag">Hood River</span><span class="svc-tag">Seattle</span><span class="svc-tag">Salem</span><span class="svc-tag">Eugene</span></div>
+        <button class="svc-book-cta" onclick="goTo('prices')">View All Prices</button>
+      </div>
+    </div>
+  </div>
+  <div class="airlines-sec">
+    <h3>Airlines We Serve at PDX</h3>
+    <div class="airline-chips">
+      <span class="chip">Alaska Airlines</span><span class="chip">American Airlines</span><span class="chip">Delta Airlines</span><span class="chip">Southwest Airlines</span><span class="chip">United Airlines</span><span class="chip">JetBlue</span><span class="chip">Spirit Airlines</span><span class="chip">Hawaiian Airlines</span><span class="chip">British Airways</span><span class="chip">Air Canada</span><span class="chip">Frontier</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ BOOK ═══════════ -->
+<div class="page" id="pg-book">
+  <div class="book-hero">
+    <h1>Book a Ride</h1>
+    <p>Fill out the form below and we'll confirm your pickup by text, call, or email. Please allow 24 hours for online reservations.</p>
+  </div>
+  <div class="book-wrap">
+    <div class="book-card">
+      <div class="book-card-head">
+        <h2>Reservation Form</h2>
+        <span>Trips 11pm–4am add $20</span>
+      </div>
+      <div class="bform">
+        <div class="fgrow">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="First"></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Last"></div>
+        </div>
+        <div class="fgrow">
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="(503) 555-0100"></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="fgrow">
+          <div class="fg"><label>Pickup Date</label><input type="date"></div>
+          <div class="fg"><label>Pickup Time</label><input type="time"></div>
+        </div>
+        <div class="fg"><label>Pickup Address</label><input type="text" placeholder="Street, City, Zip Code"></div>
+        <div class="fgrow">
+          <div class="fg"><label>Service Type</label>
+            <select><option>To Airport (PDX)</option><option>From Airport (PDX)</option><option>Point-to-Point</option></select>
+          </div>
+          <div class="fg"><label>Passengers</label>
+            <select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+          </div>
+        </div>
+        <div class="fg"><label>Flight Number (optional)</label><input type="text" placeholder="e.g. UA 1234"></div>
+        <div class="fg"><label>Comments</label><textarea placeholder="Luggage details, special requests, etc."></textarea></div>
+        <button class="sub-btn" onclick="handleBook(this)">Send Reservation Request</button>
+        <p class="sub-note">Prefer to call? Reach Waleed at <a href="tel:5039988608">(503) 998-8608</a> anytime</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PRICES ═══════════ -->
+<div class="page" id="pg-prices">
+  <div class="prices-hero">
+    <h1>Price Guide</h1>
+    <p>Fares from Portland (PDX) to destinations across Oregon and Washington.</p>
+  </div>
+  <div class="prices-body">
+    <div class="pnote">Prices are <strong>per passenger</strong>. Children 5 &amp; under ride free. Fares marked <strong>+</strong> may vary — call for exact quote. Late-night trips (11pm–4am) add $20.</div>
+    <div class="srch"><span class="srch-ico">🔍</span><input type="text" placeholder="Search a city..." oninput="filterP(this.value)" id="pSearch"></div>
+    <div class="pills">
+      <button class="pill on" id="por" onclick="swState('or')">Oregon</button>
+      <button class="pill" id="pwa" onclick="swState('wa')">Washington</button>
+    </div>
+    <div class="ptable" id="pTable"></div>
+  </div>
+</div>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<div class="page" id="pg-contact">
+  <div class="contact-hero">
+    <h1>Contact Us</h1>
+    <p>Call, text, or email Waleed anytime — we're available 24/7 for bookings and questions.</p>
+  </div>
+  <div class="contact-body">
+    <div class="contact-info-cards">
+      <div class="ccard">
+        <div class="ccard-icon">📞</div>
+        <h4>Call or Text</h4>
+        <a href="tel:5039988608">(503) 998-8608</a>
+        <p style="margin-top:.3rem;font-size:.7rem;">Available 24/7</p>
+      </div>
+      <div class="ccard">
+        <div class="ccard-icon">✉️</div>
+        <h4>Email</h4>
+        <a href="mailto:windvanshuttle@gmail.com">windvanshuttle<br>@gmail.com</a>
+      </div>
+      <div class="ccard">
+        <div class="ccard-icon">✈️</div>
+        <h4>PDX Pickup</h4>
+        <p>Sidewalk Island #3</p>
+        <p style="font-size:.7rem;margin-top:.3rem;">We call within 10 min of landing</p>
+      </div>
+      <div class="ccard">
+        <div class="ccard-icon">💳</div>
+        <h4>Payment</h4>
+        <p>Cash · Visa · MC<br>Amex accepted</p>
+      </div>
+    </div>
+
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178817.1823654485!2d-122.8368!3d45.5435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54950b0b7da97427%3A0x1c36b9e6f6d18591!2sPortland%20International%20Airport!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Portland International Airport map">
+      </iframe>
+    </div>
+
+    <div class="map-note">
+      <h4>Portland International Airport (PDX)</h4>
+      <p>7000 NE Airport Way, Portland, OR 97218</p>
+      <p style="margin-top:.5rem;">When you land, <strong>head to the sidewalk at Island #3</strong> after collecting your luggage. Keep your phone on — your driver will call you within 10 minutes of arrival.</p>
+    </div>
+
+    <div class="hours-card">
+      <h4>Hours of Operation</h4>
+      <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">24 Hours</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">24 Hours</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">24 Hours</span></div>
+      <div class="hours-row"><span class="hours-day">Late Night (11pm–4am)</span><span class="hours-time">+$20 surcharge</span></div>
+    </div>
+
+    <div class="contact-form-card">
+      <div class="cfhead"><h3>Send a Message</h3></div>
+      <div class="cfbody">
+        <div class="fgrow">
+          <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="(503) 555-0100"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        <div class="fg"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
+        <button class="sub-btn" onclick="handleMsg(this)">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Wind Van <span>Shuttle</span></div>
+  <div class="ft-sub">24/7 Airport Transportation · Portland, Oregon<br>Licensed &amp; Insured LLC</div>
+  <div class="ft-links">
+    <a href="tel:5039988608">(503) 998-8608</a>
+    <a href="mailto:windvanshuttle@gmail.com">windvanshuttle@gmail.com</a>
+    <a href="#" onclick="goTo('book');return false;">Book a Ride</a>
+    <a href="#" onclick="goTo('prices');return false;">Price Guide</a>
+  </div>
+  <div class="ft-copy">© 2025 Wind Van Shuttle LLC</div>
+</footer>
+
+<script>
+const pages=['home','services','book','prices','contact'];
+function goTo(id){
+  pages.forEach(p=>{
+    document.getElementById('pg-'+p).classList.toggle('active',p===id);
+  });
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>{
+    t.classList.toggle('active',pages[i]===id);
+  });
+  document.querySelectorAll('.mob-menu button').forEach((b,i)=>{
+    b.classList.toggle('active',pages[i]===id);
+  });
+  closeMob();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+function handleBook(btn){btn.textContent='Request Sent — We\'ll confirm soon ✓';btn.style.background='#2e7d4f';btn.disabled=true;}
+function handleMsg(btn){btn.textContent='Message Sent ✓';btn.style.background='#2e7d4f';btn.disabled=true;}
+
+const orC=[["Albany","$198"],["Astoria","$296"],["Beaverton","$68+"],["Bend","$410"],["Canby","$88"],["Cannon Beach","$260"],["Carlton","$155"],["Clackamas","$68+"],["Corbett","$98"],["Cornelius","$128"],["Corvallis","$199+"],["Damascus","$70"],["Donald","$105"],["Dundee","$128"],["Estacada","$98"],["Eugene","$348"],["Forest Grove","$108"],["Gervais","$135"],["Gladstone","$68"],["Govt. Camp","$175"],["Gresham","$75+"],["Happy Valley","$80+"],["Hillsboro","$118"],["Hood River","$155"],["Hubbard","$68"],["Keizer","$150"],["King City","$68+"],["Lake Oswego","$68+"],["Lebanon","$185"],["Lincoln City","$225"],["Madras","$295"],["McMinnville","$145+"],["Milwaukie","$98"],["Molalla","$254"],["Mt. Angel","$165+"],["Mt. Hood","$70"],["Newberg","$155"],["Newport","$355"],["North Plains","$97"],["Oregon City","$65+"],["Pacific City","$355"],["Pendleton","$638"],["Portland","$35"],["Redmond","$285"],["Roseburg","$555"],["Salem","$180"],["Sandy","$95"],["Scappoose","$80"],["Seaside","$295"],["Sherwood","$98"],["Silverton","$136"],["Sisters","$295"],["Springfield","$185"],["St. Helens","$98"],["Stayton","$110"],["The Dalles","$185"],["Tigard","$65+"],["Tillamook","$175"],["Troutdale","$75+"],["Tualatin","$185"],["Turner","$168"],["Vernonia","$240"],["Warrenton","$280+"],["West Linn","$75"],["Wilsonville","$158+"],["Woodburn","$65+"],["Yamhill","$185"]];
+const waC=[["Amboy","$240+"],["Battle Ground","$190+"],["Bingen","$305+"],["Camas","$65+"],["Castle Rock","$220+"],["Cathlamet","$270+"],["Centralia","$260+"],["Chehalis","$310+"],["Felida","$65+"],["Goldendale","$340+"],["Hazel Dell","$65+"],["Husum","$210+"],["Kalama","$115+"],["Kelso","$145+"],["Klickitat","$90+"],["La Center","$65+"],["Long Beach","$350+"],["Long View","$150+"],["Olympia","$100+"],["Orchards","$75+"],["Rainier","$80+"],["Ridgefield","$60+"],["Rosburg","$280+"],["Salmon Creek","$65+"],["SeaTac","$220+"],["Seattle","$480+"],["Skamania Lodge","$120+"],["Toutle","$210+"],["Vancouver","$95+"],["Walla Walla","$640+"],["Washougal","$80+"],["White Salmon","$95+"],["Winlock","$260+"],["Woodland","$190+"],["Yacolt","$340+"]];
+let curState='or',curQ='';
+function renderP(){
+  const data=curState==='or'?orC:waC;
+  const q=curQ.toLowerCase();
+  const rows=q?data.filter(([c])=>c.toLowerCase().includes(q)):data;
+  document.getElementById('pTable').innerHTML=rows.length?rows.map(([c,p])=>`<div class="prow"><span class="pcity">${c}</span><span class="pamt">${p}</span></div>`).join(''):'<div class="nores">No results found.</div>';
+}
+renderP();
+function filterP(v){curQ=v;renderP();}
+function swState(s){
+  curState=s;
+  document.getElementById('por').classList.toggle('on',s==='or');
+  document.getElementById('pwa').classList.toggle('on',s==='wa');
+  renderP();
+}
+</script>
